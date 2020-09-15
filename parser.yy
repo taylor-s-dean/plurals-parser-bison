@@ -64,7 +64,8 @@
 %left "==" "!=";
 %left "<" "<=" ">" ">=";
 %left "%";
-%nonassoc "?" ":";
+%left "?";
+%right ":";
 
 unit: assignments if_statement  { drv.result = $2; };
 
@@ -77,13 +78,13 @@ assignment:
 
 if_statement:
   expression
-| expression "?" expression
-| expression "?" expression ":" expression { $$ = $1 ? $3 : $5; }
+| expression "?" if_statement
+| expression "?" if_statement ":" if_statement { $$ = $1 ? $3 : $5; }
 ;
 
 multiplicative: expression "%" expression   { $$ = $1 % $3; };
 
-associative: "(" expression ")"   { $$ = $2; };
+associative: "(" if_statement ")"   { $$ = $2; };
 
 relational:
   expression "<" expression  { $$ = $1 < $3; }
