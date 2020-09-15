@@ -1,13 +1,15 @@
+#include <cstdlib>
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <iomanip>
 #include <functional>
 #include "driver.hh"
 
 typedef unsigned int uint;
 
 bool
-run_tests(driver& drv) {
+run_tests(driver& drv, const bool verbose) {
     std::map<std::string, std::function<uint(uint)>> test_expressions{
         std::make_pair<std::string, std::function<uint(uint)>>(
             "0", [](uint n) { return 0; }),
@@ -254,10 +256,29 @@ run_tests(driver& drv) {
     for (const std::pair<std::string, std::function<uint(uint)>>& key_value :
          test_expressions) {
         for (uint idx = 0; idx <= 1000; ++idx) {
-            std::stringstream ss;
-            ss << "n=" << idx << key_value.first;
-            if (!drv.parse(ss.str())) {
-                std::cout << drv.result << '\n';
+            drv.variables["n"] = idx;
+
+            uint truth{key_value.second(idx)};
+            if (verbose) {
+                std::cout << "-----------------------------------" << std::endl;
+                std::cout << "Statement: " << std::quoted(key_value.first)
+                          << std::endl;
+                std::cout << "n: " << idx << std::endl;
+                std::cout << "Truth: " << truth << std::endl;
+            }
+
+            if (!drv.parse(key_value.first)) {
+                if (verbose) {
+                    std::cout << "Result: " << drv.result << std::endl;
+                    std::cout << (drv.result == truth ? "Success" : "Failure")
+                              << std::endl;
+                }
+            } else {
+                success = false;
+            }
+
+            if (verbose) {
+                std::cout << "-----------------------------------" << std::endl;
             }
         }
     }
@@ -267,13 +288,25 @@ run_tests(driver& drv) {
 
 int
 main(int argc, char* argv[]) {
-    int res = 0;
     driver drv;
-    for (int i = 1; i < argc; ++i)
-        if (argv[i] == std::string("-p"))
+    bool verbose{false};
+    for (int i = 1; i < argc; ++i) {
+        if (argv[i] == std::string("-p")) {
             drv.trace_parsing = true;
-        else if (argv[i] == std::string("-s"))
+        } else if (argv[i] == std::string("-s")) {
             drv.trace_scanning = true;
-    run_tests(drv);
-    return res;
+        }
+
+        if (argv[i] == std::string("-v")) {
+            verbose = true;
+        }
+    }
+
+    if (!run_tests(drv, verbose)) {
+        std::cout << "Tests failed." << std::endl;
+        return EXIT_FAILURE;
+    }
+
+    std::cout << "Tests passed." << std::endl;
+    return EXIT_SUCCESS;
 }

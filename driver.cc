@@ -8,7 +8,7 @@ driver::driver() : trace_parsing(false), trace_scanning(false) {
 
 int
 driver::parse(const std::string& f) {
-    file = f;
+    file_contents = f;
     std::string dummy_fname{"dummy.tern"};
     location.initialize(&dummy_fname);
     scan_begin();
