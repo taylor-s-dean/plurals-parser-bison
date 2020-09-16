@@ -345,16 +345,19 @@ main(int argc, char* argv[]) {
             "-s,--trace-scanning", drv.trace_scanning, "Enable trace scanning.")
         ->required(false);
 
-    bool verbose{false};
-    eval->add_flag("-v,--verbose", verbose, "Be verbose.")->required(false);
+    bool verbose_eval{false};
+    eval->add_flag("-v,--verbose", verbose_eval, "Be verbose.")
+        ->required(false);
 
     CLI::App* test{app.add_subcommand("test", "Run test suite.")};
-    test->add_flag("-v,--verbose", verbose, "Be verbose.")->required(false);
+    bool verbose_test{false};
+    test->add_flag("-v,--verbose", verbose_test, "Be verbose.")
+        ->required(false);
 
     CLI11_PARSE(app, argc, argv);
 
     if (app.got_subcommand("test")) {
-        if (!run_tests(drv, verbose)) {
+        if (!run_tests(drv, verbose_test)) {
             std::cout << "Tests failed." << std::endl;
         } else {
             std::cout << "Tests passed." << std::endl;
@@ -362,7 +365,7 @@ main(int argc, char* argv[]) {
     }
 
     if (app.got_subcommand("eval")) {
-        if (!evaluate_plural_forms(drv, plural_forms, n, verbose)) {
+        if (!evaluate_plural_forms(drv, plural_forms, n, verbose_eval)) {
             std::cout << "Failed to parse plural-forms expression. Try running "
                          "with --verbose, --trace-parsing, or --trace-scanning "
                          "for more information."
