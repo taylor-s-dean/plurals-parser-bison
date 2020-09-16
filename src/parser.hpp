@@ -522,9 +522,7 @@ namespace yy {
         S_relational = 24,                       // relational
         S_equality = 25,                         // equality
         S_logical = 26,                          // logical
-        S_unit = 27,                             // unit
-        S_assignments = 28,                      // assignments
-        S_assignment = 29                        // assignment
+        S_unit = 27                              // unit
       };
     };
 
@@ -1464,9 +1462,9 @@ switch (yykind)
     /// Constants.
     enum
     {
-      yylast_ = 71,     ///< Last index in yytable_.
-      yynnts_ = 11,  ///< Number of nonterminal symbols.
-      yyfinal_ = 3 ///< Termination state number.
+      yylast_ = 54,     ///< Last index in yytable_.
+      yynnts_ = 9,  ///< Number of nonterminal symbols.
+      yyfinal_ = 23 ///< Termination state number.
     };
 
 
@@ -1612,7 +1610,7 @@ switch (yykind)
   }
 
 } // yy
-#line 1616 "src/parser.hpp"
+#line 1614 "src/parser.hpp"
 
 
 

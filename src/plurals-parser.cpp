@@ -334,7 +334,7 @@ main(int argc, char* argv[]) {
             "plural-forms", plural_forms, "A Gettext plural-forms ternary.")
         ->required(true);
 
-    uint n;
+    uint n{0};
     eval->add_option("-n,--n", n, "The value of n.")->required(true);
 
     eval->add_flag(
@@ -345,7 +345,7 @@ main(int argc, char* argv[]) {
             "-s,--trace-scanning", drv.trace_scanning, "Enable trace scanning.")
         ->required(false);
 
-    bool verbose;
+    bool verbose{false};
     eval->add_flag("-v,--verbose", verbose, "Be verbose.")->required(false);
 
     CLI::App* test{app.add_subcommand("test", "Run test suite.")};

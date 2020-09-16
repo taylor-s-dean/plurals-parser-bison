@@ -67,14 +67,7 @@
 %left "?";
 %right ":";
 
-unit: assignments if_statement  { drv.result = $2; };
-
-assignments:
-  %empty                 {}
-| assignments assignment {};
-
-assignment:
-  "identifier" "=" expression { drv.variables[$1] = $3; };
+unit: if_statement  { drv.result = $1; };
 
 if_statement:
   expression

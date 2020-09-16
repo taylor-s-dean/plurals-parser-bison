@@ -59,6 +59,9 @@ pre-build:
 		mkdir $(ODIR);           \
 	fi
 
+test: pre-build plurals-parser
+	./plurals-parser test
+
 clean:
 	rm -rf $(ODIR)          \
 		*~                  \
