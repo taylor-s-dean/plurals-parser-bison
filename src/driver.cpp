@@ -1,5 +1,5 @@
-#include "driver.hh"
-#include "parser.hh"
+#include "driver.hpp"
+#include "parser.hpp"
 
 driver::driver() : trace_parsing(false), trace_scanning(false) {
     variables["one"] = 1;
@@ -7,10 +7,10 @@ driver::driver() : trace_parsing(false), trace_scanning(false) {
 }
 
 int
-driver::parse(const std::string& f) {
+driver::parse(const std::string& f, const uint n) {
     file_contents = f;
-    std::string dummy_fname{"dummy.tern"};
-    location.initialize(&dummy_fname);
+    location.initialize();
+    variables["n"] = n;
     scan_begin();
     yy::parser parser(*this);
     parser.set_debug_level(trace_parsing);

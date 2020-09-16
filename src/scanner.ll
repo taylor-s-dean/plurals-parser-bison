@@ -4,8 +4,8 @@
 # include <cstdlib>
 # include <cstring> // strerror
 # include <string>
-# include "driver.hh"
-# include "parser.hh"
+# include "driver.hpp"
+# include "parser.hpp"
 %}
 
 %option noyywrap nounput noinput batch debug
@@ -66,7 +66,7 @@ make_NUMBER (const std::string &s, const yy::parser::location_type& loc) {
     if (! (INT_MIN <= n && n <= INT_MAX && errno != ERANGE)) {
         throw yy::parser::syntax_error (loc, "integer is out of range: " + s);
     }
-    return yy::parser::make_NUMBER ((int) n, loc);
+    return yy::parser::make_NUMBER ((uint) n, loc);
 }
 
 void

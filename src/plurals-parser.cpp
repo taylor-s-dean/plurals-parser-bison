@@ -4,7 +4,12 @@
 #include <string>
 #include <iomanip>
 #include <functional>
-#include "driver.hh"
+
+#include "CLI/App.hpp"
+#include "CLI/Formatter.hpp"
+#include "CLI/Config.hpp"
+
+#include "driver.hpp"
 
 typedef unsigned int uint;
 
@@ -12,7 +17,7 @@ bool
 run_tests(driver& drv, const bool verbose) {
     std::map<std::string, std::function<uint(uint)>> test_expressions{
         std::make_pair<std::string, std::function<uint(uint)>>(
-            "0", [](uint n) { return 0; }),
+            "0", [](uint) { return 0; }),
         std::make_pair<std::string, std::function<uint(uint)>>(
             "(n == 0) ? 0 : ((n == 1) ? 1 : 2)",
             [](uint n) { return (n == 0) ? 0 : ((n == 1) ? 1 : 2); }),
@@ -256,8 +261,6 @@ run_tests(driver& drv, const bool verbose) {
     for (const std::pair<std::string, std::function<uint(uint)>>& key_value :
          test_expressions) {
         for (uint idx = 0; idx <= 1000; ++idx) {
-            drv.variables["n"] = idx;
-
             uint truth{key_value.second(idx)};
             if (verbose) {
                 std::cout << "-----------------------------------" << std::endl;
@@ -267,7 +270,7 @@ run_tests(driver& drv, const bool verbose) {
                 std::cout << "Truth: " << truth << std::endl;
             }
 
-            if (!drv.parse(key_value.first)) {
+            if (!drv.parse(key_value.first, idx)) {
                 if (verbose) {
                     std::cout << "Result: " << drv.result << std::endl;
                     std::cout << (drv.result == truth ? "Success" : "Failure")
@@ -286,27 +289,88 @@ run_tests(driver& drv, const bool verbose) {
     return success;
 }
 
+bool
+evaluate_plural_forms(
+    driver& drv,
+    const std::string& plural_forms,
+    const uint n,
+    const bool verbose) {
+    bool success{true};
+
+    if (verbose) {
+        std::cout << "-----------------------------------" << std::endl;
+        std::cout << "Statement: " << std::quoted(plural_forms) << std::endl;
+        std::cout << "n: " << n << std::endl;
+    }
+
+    if (!drv.parse(plural_forms, n)) {
+        if (verbose) {
+            std::cout << "Result: " << drv.result << std::endl;
+        }
+    } else {
+        std::cout << "Failed to parse plural-forms." << std::endl;
+        success = false;
+    }
+
+    if (verbose) {
+        std::cout << "-----------------------------------" << std::endl;
+    }
+
+    return success;
+}
+
 int
 main(int argc, char* argv[]) {
     driver drv;
-    bool verbose{false};
-    for (int i = 1; i < argc; ++i) {
-        if (argv[i] == std::string("-p")) {
-            drv.trace_parsing = true;
-        } else if (argv[i] == std::string("-s")) {
-            drv.trace_scanning = true;
-        }
+    CLI::App app{
+        "plurals-parser is a CLI tool that computes the result of a Gettext "
+        "plural-forms ternary."};
 
-        if (argv[i] == std::string("-v")) {
-            verbose = true;
+    CLI::App* eval{
+        app.add_subcommand("eval", "Evaluate a plural-forms ternary.")};
+
+    std::string plural_forms;
+    eval->add_option(
+            "plural-forms", plural_forms, "A Gettext plural-forms ternary.")
+        ->required(true);
+
+    uint n;
+    eval->add_option("-n,--n", n, "The value of n.")->required(true);
+
+    eval->add_flag(
+            "-p,--trace-parsing", drv.trace_parsing, "Enable trace parsing.")
+        ->required(false);
+
+    eval->add_flag(
+            "-s,--trace-scanning", drv.trace_scanning, "Enable trace scanning.")
+        ->required(false);
+
+    bool verbose;
+    eval->add_flag("-v,--verbose", verbose, "Be verbose.")->required(false);
+
+    CLI::App* test{app.add_subcommand("test", "Run test suite.")};
+    test->add_flag("-v,--verbose", verbose, "Be verbose.")->required(false);
+
+    CLI11_PARSE(app, argc, argv);
+
+    if (app.got_subcommand("test")) {
+        if (!run_tests(drv, verbose)) {
+            std::cout << "Tests failed." << std::endl;
+        } else {
+            std::cout << "Tests passed." << std::endl;
         }
     }
 
-    if (!run_tests(drv, verbose)) {
-        std::cout << "Tests failed." << std::endl;
-        return EXIT_FAILURE;
+    if (app.got_subcommand("eval")) {
+        if (!evaluate_plural_forms(drv, plural_forms, n, verbose)) {
+            std::cout << "Failed to parse plural-forms expression. Try running "
+                         "with --verbose, --trace-parsing, or --trace-scanning "
+                         "for more information."
+                      << std::endl;
+            return EXIT_FAILURE;
+        }
+        std::cout << drv.result << std::endl;
     }
 
-    std::cout << "Tests passed." << std::endl;
     return EXIT_SUCCESS;
 }

@@ -22,7 +22,7 @@
 %define parse.lac full
 
 %code {
-# include "driver.hh"
+# include "driver.hpp"
 }
 
 %define api.token.prefix {TOK_}
@@ -44,14 +44,14 @@
 ;
 
 %token <std::string> IDENTIFIER "identifier"
-%token <int> NUMBER "number"
-%nterm <int> expression
-%nterm <int> if_statement
-%nterm <int> multiplicative
-%nterm <int> associative
-%nterm <int> relational
-%nterm <int> equality
-%nterm <int> logical
+%token <uint> NUMBER "number"
+%nterm <uint> expression
+%nterm <uint> if_statement
+%nterm <uint> multiplicative
+%nterm <uint> associative
+%nterm <uint> relational
+%nterm <uint> equality
+%nterm <uint> logical
 
 %printer { yyo << $$; } <*>;
 

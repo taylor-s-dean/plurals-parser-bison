@@ -1,6 +1,3 @@
 /core
-/calc
-/parser.hh
-/parser.cc
-/scanner.cc
-/scanner.hh
+/obj
+/plurals-parser
