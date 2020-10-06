@@ -69,4 +69,5 @@ clean:
 		$(SDIR)/parser.cpp  \
 		$(SDIR)/parser.hpp  \
 		$(SDIR)/scanner.cpp \
+		$(SDIR)/location.hh \
 		./plurals-parser
