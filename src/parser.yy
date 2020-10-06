@@ -18,7 +18,7 @@
 %locations
 
 %define parse.trace
-%define parse.error detailed
+%define parse.error verbose
 %define parse.lac full
 
 %code {
