@@ -18,7 +18,8 @@ CFLAGS = -I./$(SDIR)                   \
 		 -Wundef                       \
 		 -Wconversion                  \
 		 -fno-common                   \
-		 -Wno-logical-op-parentheses
+		 -Wno-logical-op-parentheses   \
+		 -Wno-sign-conversion
 
 .PHONY: all clean
 .SECONDARY: main-build
