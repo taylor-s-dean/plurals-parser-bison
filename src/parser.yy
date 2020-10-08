@@ -1,5 +1,5 @@
 %skeleton "lalr1.cc" // -*- C++ -*-
-%require "3.6.4"
+%require "3.5.1"
 %defines
 
 %define api.token.raw
@@ -18,7 +18,7 @@
 %locations
 
 %define parse.trace
-%define parse.error detailed
+%define parse.error verbose
 %define parse.lac full
 
 %code {
@@ -29,7 +29,7 @@
 %token
   ASSIGN  "="
   MOD     "%"
-  THAN    "?"
+  THEN    "?"
   ELSE    ":"
   LT      "<"
   LE      "<="
@@ -41,6 +41,7 @@
   OR      "||"
   LPAREN  "("
   RPAREN  ")"
+  YYEOF   0
 ;
 
 %token <std::string> IDENTIFIER "identifier"

@@ -1,13 +1,13 @@
 #include <cstdlib>
+#include <functional>
+#include <iomanip>
 #include <iostream>
 #include <sstream>
 #include <string>
-#include <iomanip>
-#include <functional>
 
 #include "CLI/App.hpp"
-#include "CLI/Formatter.hpp"
 #include "CLI/Config.hpp"
+#include "CLI/Formatter.hpp"
 
 #include "driver.hpp"
 
@@ -258,8 +258,8 @@ run_tests(driver& drv, const bool verbose) {
     };
 
     bool success{true};
-    for (const std::pair<std::string, std::function<uint(uint)>>& key_value :
-         test_expressions) {
+    for (const std::pair<const std::string, std::function<uint(uint)>>&
+             key_value : test_expressions) {
         for (uint idx = 0; idx <= 1000; ++idx) {
             uint truth{key_value.second(idx)};
             if (verbose) {
