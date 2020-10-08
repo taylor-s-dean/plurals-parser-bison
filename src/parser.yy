@@ -29,7 +29,7 @@
 %token
   ASSIGN  "="
   MOD     "%"
-  THAN    "?"
+  THEN    "?"
   ELSE    ":"
   LT      "<"
   LE      "<="
@@ -41,6 +41,7 @@
   OR      "||"
   LPAREN  "("
   RPAREN  ")"
+  YYEOF   0
 ;
 
 %token <std::string> IDENTIFIER "identifier"

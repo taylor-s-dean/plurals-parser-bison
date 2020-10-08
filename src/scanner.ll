@@ -39,7 +39,7 @@ blank [ \t\r]
 "("        return yy::parser::make_LPAREN (loc);
 ")"        return yy::parser::make_RPAREN (loc);
 "="        return yy::parser::make_ASSIGN (loc);
-"?"        return yy::parser::make_THAN   (loc);
+"?"        return yy::parser::make_THEN   (loc);
 ":"        return yy::parser::make_ELSE   (loc);
 "<"        return yy::parser::make_LT     (loc);
 "<="       return yy::parser::make_LE     (loc);
