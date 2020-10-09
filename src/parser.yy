@@ -3,61 +3,58 @@
 %defines
 
 %define api.token.constructor
+%define api.token.prefix {TOK_}
 %define api.value.type variant
 %define parse.assert
-
-%code requires {
-  # include <string>
-  class driver;
-}
-
-// The parsing context.
-%param { driver& drv }
-
+%define parse.trace
+%define parse.lac full
+%define parse.error detailed
+%define lr.type ielr
 %locations
 
-%define parse.trace
-%define parse.error verbose
-
-%code {
-# include "driver.hpp"
+%code requires {
+    #include <string>
+    class driver;
 }
 
-%define api.token.prefix {TOK_}
-%token
-  ASSIGN  "="
-  MOD     "%"
-  THEN    "?"
-  ELSE    ":"
-  LT      "<"
-  LE      "<="
-  GT      ">"
-  GE      ">="
-  EQ      "=="
-  NE      "!="
-  AND     "&&"
-  OR      "||"
-  LPAREN  "("
-  RPAREN  ")"
-  YYEOF   0
-;
+%code provides {
+    #include "driver.hpp"
+}
+
+%param { driver& drv }
 
 %token <std::string> IDENTIFIER "identifier"
 %token <uint> NUMBER "number"
-%nterm <uint> expression
-%nterm <uint> if_statement
-%nterm <uint> multiplicative
-%nterm <uint> associative
-%nterm <uint> relational
-%nterm <uint> equality
-%nterm <uint> logical
+%token
+    MOD     "%"
+    THEN    "?"
+    ELSE    ":"
+    LT      "<"
+    LE      "<="
+    GT      ">"
+    GE      ">="
+    EQ      "=="
+    NE      "!="
+    AND     "&&"
+    OR      "||"
+    LPAREN  "("
+    RPAREN  ")"
+    YYEOF    0
+;
+
+%nterm <uint>
+    expression
+    if_statement
+    multiplicative
+    associative
+    relational
+    equality
+    logical
+;
 
 %printer { yyo << $$; } <*>;
 
 %%
-%start unit;
-
-
 %left "||";
 %left "&&";
 %left "==" "!=";
@@ -65,6 +62,8 @@
 %left "%";
 %left "?";
 %right ":";
+
+%start unit;
 
 unit: if_statement  { drv.result = $1; };
 
@@ -106,8 +105,6 @@ expression:
 ;
 %%
 
-void
-yy::parser::error (const location_type& l, const std::string& m)
-{
-  std::cerr << l << ": " << m << '\n';
+void yy::parser::error (const location_type& l, const std::string& m) {
+    std::cerr << l << ": " << m << '\n';
 }
