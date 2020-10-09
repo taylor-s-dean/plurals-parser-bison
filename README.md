@@ -7,7 +7,7 @@ A CLI tool and library intended to dynamically parse C++ style ternary, mathemat
 ## Building
 
 ```sh
-git clone git@github.com:limitz404/plurals-parser-bison.git
+git clone https://github.com/taylor-s-dean/plurals-parser-bison.git
 cd plurals-parser-bison
 make
 ```
