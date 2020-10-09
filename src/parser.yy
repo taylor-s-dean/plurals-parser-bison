@@ -7,7 +7,6 @@
 %define api.value.type variant
 %define parse.assert
 %define parse.trace
-%define parse.lac full
 %define parse.error verbose
 %define lr.type ielr
 %locations
