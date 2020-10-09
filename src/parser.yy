@@ -8,7 +8,7 @@
 %define parse.assert
 %define parse.trace
 %define parse.lac full
-%define parse.error detailed
+%define parse.error verbose
 %define lr.type ielr
 %locations
 
