@@ -1,4 +1,4 @@
-name: Ubuntu 19.04 Test
+name: Ubuntu Latest Test
 
 on:
     push:
