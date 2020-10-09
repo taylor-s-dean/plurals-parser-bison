@@ -50,11 +50,11 @@ $(SDIR)/parser.cpp $(SDIR)/parser.hpp: $(SDIR)/parser.yy
 	$(YACC) -d -o $(SDIR)/parser.cpp $<
 
 pre-build:
-	@if git submodule status | egrep -q '^[-]|^[+]' ; then 		                         \
-		echo "INFO: Need to reinitialize git submodules"; 		                         \
-		git submodule update --init; 							                         \
-	else 														                         \
-		echo "INFO: No need to reinitialize git submodules"; 	                         \
+	@if git submodule status | egrep -q '^[-]|^[+]' ; then      \
+		echo "INFO: Need to reinitialize git submodules";       \
+		git submodule update --init;                            \
+	else                                                        \
+		echo "INFO: No need to reinitialize git submodules";    \
 	fi
 	@if test ! -d $(ODIR) ; then \
 		mkdir $(ODIR);           \
@@ -64,11 +64,12 @@ test: pre-build plurals-parser
 	./plurals-parser test
 
 clean:
-	rm -rf $(ODIR)          \
+	rm -rf                      \
+		$(ODIR)                 \
 		*~                  \
 		core                \
-		$(SDIR)/parser.cpp  \
-		$(SDIR)/parser.hpp  \
-		$(SDIR)/scanner.cpp \
-		$(SDIR)/location.hh \
+		$(SDIR)/parser.cpp      \
+		$(SDIR)/parser.hpp      \
+		$(SDIR)/scanner.cpp     \
+		$(SDIR)/location.hh     \
 		./plurals-parser
