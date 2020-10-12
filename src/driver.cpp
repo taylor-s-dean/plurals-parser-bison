@@ -1,10 +1,7 @@
 #include "driver.hpp"
 #include "parser.hpp"
 
-driver::driver() : trace_parsing(false), trace_scanning(false) {
-    variables["one"] = 1;
-    variables["two"] = 2;
-}
+driver::driver() : trace_parsing(false), trace_scanning(false) {}
 
 int
 driver::parse(const std::string& f, const uint n) {

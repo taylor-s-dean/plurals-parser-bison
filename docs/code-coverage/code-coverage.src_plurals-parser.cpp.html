@@ -1,0 +1,3184 @@
+
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Head</title>
+  <style media="screen" type="text/css">
+
+    body
+    {
+      color: #000000;
+      background-color: #FFFFFF;
+    }
+
+    /* Link formats: use maroon w/underlines */
+    a:link
+    {
+      color: navy;
+      text-decoration: underline;
+    }
+    a:visited
+    {
+      color: maroon;
+      text-decoration: underline;
+    }
+    a:active
+    {
+      color: navy;
+      text-decoration: underline;
+    }
+
+    /*** TD formats ***/
+    td
+    {
+      font-family: sans-serif;
+    }
+    td.title
+    {
+      text-align: center;
+      padding-bottom: 10px;
+      font-size: 20pt;
+      font-weight: bold;
+    }
+
+    /* TD Header Information */
+    td.headerName
+    {
+      text-align: right;
+      color: black;
+      padding-right: 6px;
+      font-weight: bold;
+      vertical-align: top;
+      white-space: nowrap;
+    }
+    td.headerValue
+    {
+      text-align: left;
+      color: blue;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+    td.headerTableEntry
+    {
+      text-align: right;
+      color: black;
+      font-weight: bold;
+      white-space: nowrap;
+      padding-left: 12px;
+      padding-right: 4px;
+      background-color: LightBlue;
+    }
+    td.headerValueLeg
+    {
+      text-align: left;
+      color: black;
+      font-size: 80%;
+      white-space: nowrap;
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-top: 2px;
+    }
+
+    /* Color of horizontal ruler */
+    td.hr
+    {
+      background-color: navy;
+      height:3px;
+    }
+    /* Footer format */
+    td.footer
+    {
+      text-align: center;
+      padding-top: 3px;
+      font-family: sans-serif;
+    }
+
+    /* Coverage Table */
+
+    td.coverTableHead
+    {
+      text-align: center;
+      color: white;
+      background-color: SteelBlue;
+      font-family: sans-serif;
+      font-size: 120%;
+      white-space: nowrap;
+      padding-left: 4px;
+      padding-right: 4px;
+    }
+    td.coverFile
+    {
+      text-align: left;
+      padding-left: 10px;
+      padding-right: 20px;
+      color: black;
+      background-color: LightBlue;
+      font-family: monospace;
+      font-weight: bold;
+      font-size: 110%;
+    }
+    td.coverBar
+    {
+      padding-left: 10px;
+      padding-right: 10px;
+      background-color: LightBlue;
+    }
+    td.coverBarOutline
+    {
+      background-color: white;
+    }
+    td.coverValue
+    {
+      padding-top: 2px;
+      text-align: right;
+      padding-left: 10px;
+      padding-right: 10px;
+      font-family: sans-serif;
+      white-space: nowrap;
+      font-weight: bold;
+    }
+
+    /* Link Details */
+    a.detail:link
+    {
+      color: #B8D0FF;
+      font-size:80%;
+    }
+    a.detail:visited
+    {
+      color: #B8D0FF;
+      font-size:80%;
+    }
+    a.detail:active
+    {
+      color: #FFFFFF;
+      font-size:80%;
+    }
+
+    .graphcont{
+        color:#000;
+        font-weight:700;
+        float:left
+    }
+
+    .graph{
+        float:left;
+        background-color: white;
+        position:relative;
+        width:280px;
+        padding:0
+    }
+
+    .graph .bar{
+        display:block;
+        position:relative;
+        border:black 1px solid;
+        text-align:center;
+        color:#fff;
+        height:10px;
+        font-family:Arial,Helvetica,sans-serif;
+        font-size:12px;
+        line-height:1.9em
+    }
+
+    .graph .bar span{
+        position:absolute;
+        left:1em
+    }
+
+    td.coveredLine,
+    span.coveredLine
+    {
+        background-color: LightGreen!important;
+    }
+
+    td.uncoveredLine,
+    span.uncoveredLine
+    {
+        background-color: LightPink!important;
+    }
+
+    .linebranch, .linecount
+    {
+        border-right: 1px gray solid;
+        background-color: lightgray;
+    }
+
+    span.takenBranch
+    {
+        color: Green!important;
+        cursor: help;
+    }
+
+    span.notTakenBranch
+    {
+        color: Red!important;
+        cursor: help;
+    }
+
+    .src
+    {
+        padding-left: 12px;
+    }
+
+    .srcHeader,
+    span.takenBranch,
+    span.notTakenBranch
+    {
+        font-family: monospace;
+        font-weight: bold;
+    }
+
+    pre
+    {
+        height : 15px;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .lineno
+    {
+        background-color: #EFE383;
+        border-right: 1px solid #BBB15F;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr><td class="title">GCC Code Coverage Report</td></tr>
+    <tr><td class="hr"></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding="1" border="0" width="100%">
+          <tr>
+            <td width="10%" class="headerName">Directory:</td>
+            <td width="35%" class="headerValue">src/</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerValue" style="text-align:right;">Exec</td>
+            <td width="10%" class="headerValue" style="text-align:right;">Total</td>
+            <td width="15%" class="headerValue" style="text-align:right;">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerName">File:</td>
+            <td class="headerValue">src/plurals-parser.cpp</td>
+            <td></td>
+            <td class="headerName">Lines:</td>
+            <td class="headerTableEntry">239</td>
+            <td class="headerTableEntry">250</td>
+            <td class="headerTableEntry" style="background-color:LightGreen">95.6 %</td>
+          </tr>
+          <tr>
+            <td class="headerName">Date:</td>
+            <td class="headerValue">2020-10-12 14:16:49</td>
+            <td></td>
+            <td class="headerName">Branches:</td>
+            <td class="headerTableEntry">451</td>
+            <td class="headerTableEntry">500</td>
+            <td class="headerTableEntry" style="background-color:LightGreen">90.2 %</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="hr"></td></tr>
+  </table>
+
+  <br>
+  <table cellspacing="0" cellpadding="1">
+    <tr>
+      <td width="5%" align="right" class="srcHeader">Line</td>
+      <td width="5%" align="right" class="srcHeader">Branch</td>
+      <td width="5%" align="right" class="srcHeader">Exec</td>
+      <td width="75%" align="left" class="srcHeader src">Source</td>
+    </tr>
+
+
+    <tr>
+    <td align="right" class="lineno"><pre>1</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>#include &lt;cstdlib></pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>2</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>#include &lt;functional></pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>3</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>#include &lt;iomanip></pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>4</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>#include &lt;iostream></pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>5</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>#include &lt;sstream></pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>6</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>#include &lt;string></pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>7</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre></pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>8</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>#include "CLI/App.hpp"</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>9</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>#include "CLI/Config.hpp"</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>10</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>#include "CLI/Formatter.hpp"</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>11</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre></pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>12</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>#include "driver.hpp"</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>13</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre></pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>14</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>typedef unsigned int uint;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>15</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre></pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>16</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>bool</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>17</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11</pre></td>
+    <td align="left" class="src coveredLine"><pre>run_tests(driver&amp; drv, const bool verbose) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>18</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>    std::map&lt;std::string, std::function&lt;uint(uint)>> test_expressions{</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>19</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span><span class="takenBranch" title="Branch 5 taken 11 times">&check;</span><span class="takenBranch" title="Branch 8 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22</pre></td>
+    <td align="left" class="src coveredLine"><pre>        std::make_pair&lt;std::string, std::function&lt;uint(uint)>>(</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>20</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11033</pre></td>
+    <td align="left" class="src coveredLine"><pre>            "0", [](uint) { return 0; }),</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>21</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span><span class="takenBranch" title="Branch 5 taken 11 times">&check;</span><span class="takenBranch" title="Branch 8 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22</pre></td>
+    <td align="left" class="src coveredLine"><pre>        std::make_pair&lt;std::string, std::function&lt;uint(uint)>>(</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>22</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            "(n == 0) ? 0 : ((n == 1) ? 1 : 2)",</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>23</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 11022 times">&check;</span><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span><span class="takenBranch" title="Branch 2 taken 11 times">&check;</span><span class="takenBranch" title="Branch 3 taken 11011 times">&check;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>11033</pre></td>
+    <td align="left" class="src coveredLine"><pre>            [](uint n) { return (n == 0) ? 0 : ((n == 1) ? 1 : 2); }),</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>24</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span><span class="takenBranch" title="Branch 5 taken 11 times">&check;</span><span class="takenBranch" title="Branch 8 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22</pre></td>
+    <td align="left" class="src coveredLine"><pre>        std::make_pair&lt;std::string, std::function&lt;uint(uint)>>(</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>25</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            "(n == 0) ? 0 : ((n == 1) ? 1 : (((n % 100 == 2 || n % 100 == "</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>26</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            "22 || n % 100 == 42 || n % 100 == 62 || n % 100 == 82) || n % "</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>27</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            "1000 == 0 &amp;&amp; (n % 100000 >= 1000 &amp;&amp; n % 100000 &lt;= 20000 || n "</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>28</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            "% 100000 == 40000 || n % 100000 == 60000 || n % 100000 == "</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>29</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            "80000) || n != 0 &amp;&amp; n % 1000000 == 100000) ? 2 : ((n % 100 == "</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>30</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            "3 || n % 100 == 23 || n % 100 == 43 || n % 100 == 63 || n % "</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>31</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            "100 == 83) ? 3 : ((n != 1 &amp;&amp; (n % 100 == 1 || n % 100 == 21 "</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>32</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            "|| n % 100 == 41 || n % 100 == 61 || n % 100 == 81)) ? 4 : "</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>33</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            "5))))",</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>34</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11033</pre></td>
+    <td align="left" class="src coveredLine"><pre>            [](uint n) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>35</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>                return (n == 0)</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>36</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 11022 times">&check;</span><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22055</pre></td>
+    <td align="left" class="src coveredLine"><pre>                           ? 0</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>37</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>                           : ((n == 1)</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>38</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 11011 times">&check;</span><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22033</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                  ? 1</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>39</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 10791 times">&check;</span><span class="takenBranch" title="Branch 1 taken 110 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>10901</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                  : (((n % 100 == 2 || n % 100 == 22 ||</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>40</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 10681 times">&check;</span><span class="takenBranch" title="Branch 1 taken 110 times">&check;</span><span class="takenBranch" title="Branch 2 taken 10571 times">&check;</span><span class="takenBranch" title="Branch 3 taken 110 times">&check;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>10791</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                       n % 100 == 42 || n % 100 == 62 ||</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>41</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 10461 times">&check;</span><span class="takenBranch" title="Branch 1 taken 110 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>10571</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                       n % 100 == 82) ||</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>42</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 33 times">&check;</span><span class="takenBranch" title="Branch 1 taken 10428 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>10461</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                      n % 1000 == 0 &amp;&amp;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>43</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 33 times">&check;</span><span class="notTakenBranch" title="Branch 1 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>33</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                          (n % 100000 >= 1000 &amp;&amp;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>44</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 22 times">&check;</span><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>33</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                               n % 100000 &lt;= 20000 ||</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>45</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 11 times">&check;</span><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                           n % 100000 == 40000 ||</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>46</pre></td>
+    <td align="right" class="linebranch"><span class="notTakenBranch" title="Branch 0 not taken">&cross;</span><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>11</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                           n % 100000 == 60000 ||</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>47</pre></td>
+    <td align="right" class="linebranch"><span class="notTakenBranch" title="Branch 0 not taken">&cross;</span><span class="notTakenBranch" title="Branch 1 not taken">&cross;</span><span class="takenBranch" title="Branch 2 taken 10428 times">&check;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>10428</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                           n % 100000 == 80000) ||</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>48</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 10428 times">&check;</span><span class="notTakenBranch" title="Branch 1 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>10428</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                      n != 0 &amp;&amp; n % 1000000 == 100000)</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>49</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 10901 times">&check;</span><span class="takenBranch" title="Branch 1 taken 110 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>21912</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                         ? 2</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>50</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 10208 times">&check;</span><span class="takenBranch" title="Branch 1 taken 110 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>10318</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                         : ((n % 100 == 3 || n % 100 == 23 ||</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>51</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 10098 times">&check;</span><span class="takenBranch" title="Branch 1 taken 110 times">&check;</span><span class="takenBranch" title="Branch 2 taken 9988 times">&check;</span><span class="takenBranch" title="Branch 3 taken 110 times">&check;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>10208</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                             n % 100 == 43 || n % 100 == 63 ||</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>52</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 9878 times">&check;</span><span class="takenBranch" title="Branch 1 taken 110 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>9988</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                             n % 100 == 83)</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>53</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 10318 times">&check;</span><span class="takenBranch" title="Branch 1 taken 110 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>20746</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                                ? 3</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>54</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 9779 times">&check;</span><span class="takenBranch" title="Branch 1 taken 99 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>9878</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                                : ((n != 1 &amp;&amp; (n % 100 == 1 ||</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>55</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 9669 times">&check;</span><span class="takenBranch" title="Branch 1 taken 110 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>9779</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                                               n % 100 == 21 ||</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>56</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 9559 times">&check;</span><span class="takenBranch" title="Branch 1 taken 110 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>9669</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                                               n % 100 == 41 ||</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>57</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 9449 times">&check;</span><span class="takenBranch" title="Branch 1 taken 110 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>9559</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                                               n % 100 == 61 ||</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>58</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 110 times">&check;</span><span class="takenBranch" title="Branch 1 taken 9339 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>9449</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                                               n % 100 == 81))</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>59</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 9878 times">&check;</span><span class="notTakenBranch" title="Branch 1 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>19756</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                                       ? 4</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>60</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11033</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                                       : 5))));</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>61</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            }),</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>62</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span><span class="takenBranch" title="Branch 5 taken 11 times">&check;</span><span class="takenBranch" title="Branch 8 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22</pre></td>
+    <td align="left" class="src coveredLine"><pre>        std::make_pair&lt;std::string, std::function&lt;uint(uint)>>(</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>63</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            "(n == 0) ? 0 : ((n == 1) ? 1 : ((n == 2) ? 2 : ((n % 100 >= 3 "</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>64</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            "&amp;&amp; n % 100 &lt;= 10) ? 3 : ((n % 100 >= 11 &amp;&amp; n % 100 &lt;= 99) ? 4 "</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>65</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            ": 5))))",</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>66</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11033</pre></td>
+    <td align="left" class="src coveredLine"><pre>            [](uint n) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>67</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>                return (n == 0)</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>68</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 11022 times">&check;</span><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22055</pre></td>
+    <td align="left" class="src coveredLine"><pre>                           ? 0</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>69</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>                           : ((n == 1)</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>70</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 11011 times">&check;</span><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22033</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                  ? 1</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>71</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 11000 times">&check;</span><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22011</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                  : ((n == 2) ? 2</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>72</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 9790 times">&check;</span><span class="takenBranch" title="Branch 1 taken 880 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>10670</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                              : ((n % 100 >= 3 &amp;&amp; n % 100 &lt;= 10)</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>73</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 10670 times">&check;</span><span class="takenBranch" title="Branch 1 taken 330 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22000</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                                     ? 3</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>74</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>19910</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                                     : ((n % 100 >= 11 &amp;&amp;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>75</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 9790 times">&check;</span><span class="notTakenBranch" title="Branch 1 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>9790</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                                         n % 100 &lt;= 99)</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>76</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 9790 times">&check;</span><span class="takenBranch" title="Branch 1 taken 330 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>19910</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                                            ? 4</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>77</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11033</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                                            : 5))));</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>78</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            }),</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>79</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span><span class="takenBranch" title="Branch 5 taken 11 times">&check;</span><span class="takenBranch" title="Branch 8 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22</pre></td>
+    <td align="left" class="src coveredLine"><pre>        std::make_pair&lt;std::string, std::function&lt;uint(uint)>>(</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>80</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            "(n == 0) ? 0 : ((n == 1) ? 1 : ((n == 2) ? 2 : ((n == 3) ? 3 "</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>81</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            ": ((n == 6) ? 4 : 5))))",</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>82</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11033</pre></td>
+    <td align="left" class="src coveredLine"><pre>            [](uint n) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>83</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>                return (n == 0)</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>84</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 11022 times">&check;</span><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22055</pre></td>
+    <td align="left" class="src coveredLine"><pre>                           ? 0</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>85</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>                           : ((n == 1)</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>86</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 11011 times">&check;</span><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22033</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                  ? 1</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>87</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>                                  : ((n == 2)</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>88</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 11000 times">&check;</span><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22011</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                         ? 2</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>89</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 10989 times">&check;</span><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>21989</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                         : ((n == 3) ? 3</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>90</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 11 times">&check;</span><span class="takenBranch" title="Branch 1 taken 10978 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22022</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                                     : ((n == 6) ? 4 : 5))));</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>91</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            }),</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>92</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span><span class="takenBranch" title="Branch 5 taken 11 times">&check;</span><span class="takenBranch" title="Branch 8 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22</pre></td>
+    <td align="left" class="src coveredLine"><pre>        std::make_pair&lt;std::string, std::function&lt;uint(uint)>>(</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>93</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            "(n == 0 || n == 1) ? 0 : ((n >= 2 &amp;&amp; n &lt;= 10) ? 1 : 2)",</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>94</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11033</pre></td>
+    <td align="left" class="src coveredLine"><pre>            [](uint n) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>95</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 11022 times">&check;</span><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span><span class="takenBranch" title="Branch 2 taken 11011 times">&check;</span><span class="takenBranch" title="Branch 3 taken 11 times">&check;</span><br/><span class="takenBranch" title="Branch 4 taken 11011 times">&check;</span><span class="notTakenBranch" title="Branch 5 not taken">&cross;</span><span class="takenBranch" title="Branch 6 taken 99 times">&check;</span><span class="takenBranch" title="Branch 7 taken 10912 times">&check;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>11033</pre></td>
+    <td align="left" class="src coveredLine"><pre>                return (n == 0 || n == 1) ? 0 : ((n >= 2 &amp;&amp; n &lt;= 10) ? 1 : 2);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>96</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            }),</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>97</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span><span class="takenBranch" title="Branch 5 taken 11 times">&check;</span><span class="takenBranch" title="Branch 8 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22</pre></td>
+    <td align="left" class="src coveredLine"><pre>        std::make_pair&lt;std::string, std::function&lt;uint(uint)>>(</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>98</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11033</pre></td>
+    <td align="left" class="src coveredLine"><pre>            "n != 1", [](uint n) { return n != 1; }),</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>99</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span><span class="takenBranch" title="Branch 5 taken 11 times">&check;</span><span class="takenBranch" title="Branch 8 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22</pre></td>
+    <td align="left" class="src coveredLine"><pre>        std::make_pair&lt;std::string, std::function&lt;uint(uint)>>(</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>100</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11033</pre></td>
+    <td align="left" class="src coveredLine"><pre>            "n > 1", [](uint n) { return n > 1; }),</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>101</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span><span class="takenBranch" title="Branch 5 taken 11 times">&check;</span><span class="takenBranch" title="Branch 8 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22</pre></td>
+    <td align="left" class="src coveredLine"><pre>        std::make_pair&lt;std::string, std::function&lt;uint(uint)>>(</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>102</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            "(n % 100 == 1) ? 0 : ((n % 100 == 2) ? 1 : ((n % 100 == 3 || "</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>103</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            "n % 100 == 4) ? 2 : 3))",</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>104</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11033</pre></td>
+    <td align="left" class="src coveredLine"><pre>            [](uint n) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>105</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11033</pre></td>
+    <td align="left" class="src coveredLine"><pre>                return (n % 100 == 1)</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>106</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 10923 times">&check;</span><span class="takenBranch" title="Branch 1 taken 110 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>21956</pre></td>
+    <td align="left" class="src coveredLine"><pre>                           ? 0</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>107</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>10923</pre></td>
+    <td align="left" class="src coveredLine"><pre>                           : ((n % 100 == 2)</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>108</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 10813 times">&check;</span><span class="takenBranch" title="Branch 1 taken 110 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>21736</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                  ? 1</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>109</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 10703 times">&check;</span><span class="takenBranch" title="Branch 1 taken 110 times">&check;</span><span class="takenBranch" title="Branch 2 taken 110 times">&check;</span><span class="takenBranch" title="Branch 3 taken 10593 times">&check;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>21846</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                  : ((n % 100 == 3 || n % 100 == 4) ? 2 : 3));</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>110</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            }),</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>111</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span><span class="takenBranch" title="Branch 5 taken 11 times">&check;</span><span class="takenBranch" title="Branch 8 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22</pre></td>
+    <td align="left" class="src coveredLine"><pre>        std::make_pair&lt;std::string, std::function&lt;uint(uint)>>(</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>112</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            "(n % 10 == 0 || n % 100 >= 11 &amp;&amp; n % 100 &lt;= 19) ? 0 : ((n % "</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>113</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            "10 == 1 &amp;&amp; n % 100 != 11) ? 1 : 2)",</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>114</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11033</pre></td>
+    <td align="left" class="src coveredLine"><pre>            [](uint n) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>115</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 8910 times">&check;</span><span class="takenBranch" title="Branch 1 taken 990 times">&check;</span><span class="takenBranch" title="Branch 2 taken 7920 times">&check;</span><span class="takenBranch" title="Branch 3 taken 990 times">&check;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>9900</pre></td>
+    <td align="left" class="src coveredLine"><pre>                return (n % 10 == 0 || n % 100 >= 11 &amp;&amp; n % 100 &lt;= 19)</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>116</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 9900 times">&check;</span><span class="takenBranch" title="Branch 1 taken 1133 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>20933</pre></td>
+    <td align="left" class="src coveredLine"><pre>                           ? 0</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>117</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 990 times">&check;</span><span class="takenBranch" title="Branch 1 taken 7920 times">&check;</span><span class="takenBranch" title="Branch 2 taken 990 times">&check;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>19943</pre></td>
+    <td align="left" class="src coveredLine"><pre>                           : ((n % 10 == 1 &amp;&amp; n % 100 != 11) ? 1 : 2);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>118</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            }),</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>119</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span><span class="takenBranch" title="Branch 5 taken 11 times">&check;</span><span class="takenBranch" title="Branch 8 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22</pre></td>
+    <td align="left" class="src coveredLine"><pre>        std::make_pair&lt;std::string, std::function&lt;uint(uint)>>(</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>120</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            "(n % 10 == 1) ? 0 : ((n % 10 == 2) ? 1 : ((n % 100 == 0 || n "</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>121</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            "% 100 == 20 || n % 100 == 40 || n % 100 == 60 || n % 100 == "</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>122</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            "80) ? 2 : 3))",</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>123</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11033</pre></td>
+    <td align="left" class="src coveredLine"><pre>            [](uint n) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>124</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11033</pre></td>
+    <td align="left" class="src coveredLine"><pre>                return (n % 10 == 1)</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>125</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 9933 times">&check;</span><span class="takenBranch" title="Branch 1 taken 1100 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>20966</pre></td>
+    <td align="left" class="src coveredLine"><pre>                           ? 0</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>126</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 8833 times">&check;</span><span class="takenBranch" title="Branch 1 taken 1100 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>18766</pre></td>
+    <td align="left" class="src coveredLine"><pre>                           : ((n % 10 == 2) ? 1</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>127</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 8580 times">&check;</span><span class="takenBranch" title="Branch 1 taken 110 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>8690</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                            : ((n % 100 == 0 || n % 100 == 20 ||</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>128</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 8470 times">&check;</span><span class="takenBranch" title="Branch 1 taken 110 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>8580</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                                n % 100 == 40 ||</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>129</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 8360 times">&check;</span><span class="takenBranch" title="Branch 1 taken 110 times">&check;</span><span class="takenBranch" title="Branch 2 taken 110 times">&check;</span><span class="takenBranch" title="Branch 3 taken 8250 times">&check;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>8470</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                                n % 100 == 60 || n % 100 == 80)</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>130</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 8690 times">&check;</span><span class="takenBranch" title="Branch 1 taken 143 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>17523</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                                   ? 2</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>131</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11033</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                                   : 3));</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>132</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            }),</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>133</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span><span class="takenBranch" title="Branch 5 taken 11 times">&check;</span><span class="takenBranch" title="Branch 8 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22</pre></td>
+    <td align="left" class="src coveredLine"><pre>        std::make_pair&lt;std::string, std::function&lt;uint(uint)>>(</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>134</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            "n % 10 != 1 || n % 100 == 11",</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>135</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 1100 times">&check;</span><span class="takenBranch" title="Branch 1 taken 9933 times">&check;</span><span class="takenBranch" title="Branch 2 taken 110 times">&check;</span><span class="takenBranch" title="Branch 3 taken 990 times">&check;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>11033</pre></td>
+    <td align="left" class="src coveredLine"><pre>            [](uint n) { return n % 10 != 1 || n % 100 == 11; }),</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>136</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span><span class="takenBranch" title="Branch 5 taken 11 times">&check;</span><span class="takenBranch" title="Branch 8 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22</pre></td>
+    <td align="left" class="src coveredLine"><pre>        std::make_pair&lt;std::string, std::function&lt;uint(uint)>>(</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>137</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            "(n % 10 == 1 &amp;&amp; n % 100 != 11) ? 0 : ((n % 10 >= 2 &amp;&amp; n % 10 "</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>138</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            "&lt;= 4 &amp;&amp; (n % 100 &lt; 12 || n % 100 > 14)) ? 1 : 2)",</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>139</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11033</pre></td>
+    <td align="left" class="src coveredLine"><pre>            [](uint n) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>140</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 110 times">&check;</span><span class="takenBranch" title="Branch 1 taken 990 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>1100</pre></td>
+    <td align="left" class="src coveredLine"><pre>                return (n % 10 == 1 &amp;&amp; n % 100 != 11)</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>141</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 1100 times">&check;</span><span class="takenBranch" title="Branch 1 taken 9933 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22066</pre></td>
+    <td align="left" class="src coveredLine"><pre>                           ? 0</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>142</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 3300 times">&check;</span><span class="takenBranch" title="Branch 1 taken 5500 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>8800</pre></td>
+    <td align="left" class="src coveredLine"><pre>                           : ((n % 10 >= 2 &amp;&amp; n % 10 &lt;= 4 &amp;&amp;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>143</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 2970 times">&check;</span><span class="takenBranch" title="Branch 1 taken 330 times">&check;</span><span class="takenBranch" title="Branch 2 taken 2640 times">&check;</span><span class="takenBranch" title="Branch 3 taken 330 times">&check;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>3300</pre></td>
+    <td align="left" class="src coveredLine"><pre>                               (n % 100 &lt; 12 || n % 100 > 14))</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>144</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 8800 times">&check;</span><span class="takenBranch" title="Branch 1 taken 1243 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>18843</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                  ? 1</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>145</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11033</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                  : 2);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>146</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            }),</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>147</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span><span class="takenBranch" title="Branch 5 taken 11 times">&check;</span><span class="takenBranch" title="Branch 8 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22</pre></td>
+    <td align="left" class="src coveredLine"><pre>        std::make_pair&lt;std::string, std::function&lt;uint(uint)>>(</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>148</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            "(n % 10 == 1 &amp;&amp; (n % 100 &lt; 11 || n % 100 > 19)) ? 0 : ((n % "</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>149</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            "10 >= 2 &amp;&amp; n % 10 &lt;= 9 &amp;&amp; (n % 100 &lt; 11 || n % 100 > 19)) ? 1 "</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>150</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            ": 2)",</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>151</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11033</pre></td>
+    <td align="left" class="src coveredLine"><pre>            [](uint n) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>152</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 990 times">&check;</span><span class="takenBranch" title="Branch 1 taken 110 times">&check;</span><span class="takenBranch" title="Branch 2 taken 110 times">&check;</span><span class="takenBranch" title="Branch 3 taken 880 times">&check;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>1100</pre></td>
+    <td align="left" class="src coveredLine"><pre>                return (n % 10 == 1 &amp;&amp; (n % 100 &lt; 11 || n % 100 > 19))</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>153</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 1100 times">&check;</span><span class="takenBranch" title="Branch 1 taken 9933 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22066</pre></td>
+    <td align="left" class="src coveredLine"><pre>                           ? 0</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>154</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 8800 times">&check;</span><span class="notTakenBranch" title="Branch 1 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>8800</pre></td>
+    <td align="left" class="src coveredLine"><pre>                           : ((n % 10 >= 2 &amp;&amp; n % 10 &lt;= 9 &amp;&amp;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>155</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 7920 times">&check;</span><span class="takenBranch" title="Branch 1 taken 880 times">&check;</span><span class="takenBranch" title="Branch 2 taken 7040 times">&check;</span><span class="takenBranch" title="Branch 3 taken 880 times">&check;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>8800</pre></td>
+    <td align="left" class="src coveredLine"><pre>                               (n % 100 &lt; 11 || n % 100 > 19))</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>156</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 8800 times">&check;</span><span class="takenBranch" title="Branch 1 taken 1243 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>18843</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                  ? 1</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>157</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11033</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                  : 2);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>158</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            }),</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>159</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span><span class="takenBranch" title="Branch 5 taken 11 times">&check;</span><span class="takenBranch" title="Branch 8 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22</pre></td>
+    <td align="left" class="src coveredLine"><pre>        std::make_pair&lt;std::string, std::function&lt;uint(uint)>>(</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>160</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            "(n % 10 == 1 &amp;&amp; n % 100 != 11 &amp;&amp; n % 100 != 71 &amp;&amp; n % 100 != "</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>161</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            "91) ? 0 : ((n % 10 == 2 &amp;&amp; n % 100 != 12 &amp;&amp; n % 100 != 72 &amp;&amp; "</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>162</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            "n % 100 != 92) ? 1 : ((((n % 10 == 3 || n % 10 == 4) || n % "</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>163</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            "10 == 9) &amp;&amp; (n % 100 &lt; 10 || n % 100 > 19) &amp;&amp; (n % 100 &lt; 70 "</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>164</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            "|| n % 100 > 79) &amp;&amp; (n % 100 &lt; 90 || n % 100 > 99)) ? 2 : ((n "</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>165</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            "!= 0 &amp;&amp; n % 1000000 == 0) ? 3 : 4)))",</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>166</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11033</pre></td>
+    <td align="left" class="src coveredLine"><pre>            [](uint n) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>167</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 990 times">&check;</span><span class="takenBranch" title="Branch 1 taken 110 times">&check;</span><span class="takenBranch" title="Branch 2 taken 880 times">&check;</span><span class="takenBranch" title="Branch 3 taken 110 times">&check;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>1100</pre></td>
+    <td align="left" class="src coveredLine"><pre>                return (n % 10 == 1 &amp;&amp; n % 100 != 11 &amp;&amp; n % 100 != 71 &amp;&amp;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>168</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 110 times">&check;</span><span class="takenBranch" title="Branch 1 taken 770 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>880</pre></td>
+    <td align="left" class="src coveredLine"><pre>                        n % 100 != 91)</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>169</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 1100 times">&check;</span><span class="takenBranch" title="Branch 1 taken 9933 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22066</pre></td>
+    <td align="left" class="src coveredLine"><pre>                           ? 0</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>170</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 990 times">&check;</span><span class="takenBranch" title="Branch 1 taken 110 times">&check;</span><span class="takenBranch" title="Branch 2 taken 880 times">&check;</span><span class="takenBranch" title="Branch 3 taken 110 times">&check;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>1100</pre></td>
+    <td align="left" class="src coveredLine"><pre>                           : ((n % 10 == 2 &amp;&amp; n % 100 != 12 &amp;&amp; n % 100 != 72 &amp;&amp;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>171</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 110 times">&check;</span><span class="takenBranch" title="Branch 1 taken 770 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>880</pre></td>
+    <td align="left" class="src coveredLine"><pre>                               n % 100 != 92)</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>172</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 1100 times">&check;</span><span class="takenBranch" title="Branch 1 taken 9163 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>20526</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                  ? 1</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>173</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 7293 times">&check;</span><span class="takenBranch" title="Branch 1 taken 1100 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>8393</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                  : ((((n % 10 == 3 || n % 10 == 4) ||</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>174</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 1100 times">&check;</span><span class="takenBranch" title="Branch 1 taken 6193 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>7293</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                       n % 10 == 9) &amp;&amp;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>175</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 2970 times">&check;</span><span class="takenBranch" title="Branch 1 taken 330 times">&check;</span><span class="takenBranch" title="Branch 2 taken 2640 times">&check;</span><span class="takenBranch" title="Branch 3 taken 330 times">&check;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>3300</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                      (n % 100 &lt; 10 || n % 100 > 19) &amp;&amp;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>176</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 990 times">&check;</span><span class="takenBranch" title="Branch 1 taken 1980 times">&check;</span><span class="takenBranch" title="Branch 2 taken 660 times">&check;</span><span class="takenBranch" title="Branch 3 taken 330 times">&check;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>2970</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                      (n % 100 &lt; 70 || n % 100 > 79) &amp;&amp;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>177</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 330 times">&check;</span><span class="takenBranch" title="Branch 1 taken 2310 times">&check;</span><span class="takenBranch" title="Branch 2 taken 330 times">&check;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>2640</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                      (n % 100 &lt; 90 || n % 100 > 99))</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>178</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 8393 times">&check;</span><span class="takenBranch" title="Branch 1 taken 1100 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>18986</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                         ? 2</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>179</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 7172 times">&check;</span><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span><span class="takenBranch" title="Branch 3 taken 7172 times">&check;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>7183</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                         : ((n != 0 &amp;&amp; n % 1000000 == 0) ? 3</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>180</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11033</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                                                         : 4)));</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>181</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            }),</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>182</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span><span class="takenBranch" title="Branch 5 taken 11 times">&check;</span><span class="takenBranch" title="Branch 8 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22</pre></td>
+    <td align="left" class="src coveredLine"><pre>        std::make_pair&lt;std::string, std::function&lt;uint(uint)>>(</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>183</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            "(n == 1) ? 0 : ((n == 0 || n % 100 >= 2 &amp;&amp; n % 100 &lt;= 10) ? 1 "</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>184</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            ": ((n % 100 >= 11 &amp;&amp; n % 100 &lt;= 19) ? 2 : 3))",</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>185</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11033</pre></td>
+    <td align="left" class="src coveredLine"><pre>            [](uint n) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>186</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>                return (n == 1)</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>187</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 11022 times">&check;</span><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22055</pre></td>
+    <td align="left" class="src coveredLine"><pre>                           ? 0</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>188</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 10780 times">&check;</span><span class="takenBranch" title="Branch 1 taken 231 times">&check;</span><span class="takenBranch" title="Branch 2 taken 9790 times">&check;</span><span class="takenBranch" title="Branch 3 taken 990 times">&check;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>11011</pre></td>
+    <td align="left" class="src coveredLine"><pre>                           : ((n == 0 || n % 100 >= 2 &amp;&amp; n % 100 &lt;= 10)</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>189</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 11011 times">&check;</span><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22033</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                  ? 1</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>190</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 9790 times">&check;</span><span class="takenBranch" title="Branch 1 taken 231 times">&check;</span><span class="takenBranch" title="Branch 2 taken 990 times">&check;</span><span class="takenBranch" title="Branch 3 taken 8800 times">&check;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>21054</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                  : ((n % 100 >= 11 &amp;&amp; n % 100 &lt;= 19) ? 2 : 3));</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>191</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            }),</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>192</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span><span class="takenBranch" title="Branch 5 taken 11 times">&check;</span><span class="takenBranch" title="Branch 8 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22</pre></td>
+    <td align="left" class="src coveredLine"><pre>        std::make_pair&lt;std::string, std::function&lt;uint(uint)>>(</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>193</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            "(n == 1) ? 0 : ((n == 0 || n % 100 >= 2 &amp;&amp; n % 100 &lt;= 19) ? 1 "</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>194</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            ": 2)",</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>195</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11033</pre></td>
+    <td align="left" class="src coveredLine"><pre>            [](uint n) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>196</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>                return (n == 1)</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>197</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 11022 times">&check;</span><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22055</pre></td>
+    <td align="left" class="src coveredLine"><pre>                           ? 0</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>198</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 11011 times">&check;</span><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span><span class="takenBranch" title="Branch 2 taken 10780 times">&check;</span><span class="takenBranch" title="Branch 3 taken 231 times">&check;</span><br/><span class="takenBranch" title="Branch 4 taken 1980 times">&check;</span><span class="takenBranch" title="Branch 5 taken 8800 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>11022</pre></td>
+    <td align="left" class="src coveredLine"><pre>                           : ((n == 0 || n % 100 >= 2 &amp;&amp; n % 100 &lt;= 19) ? 1</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>199</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11033</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                                                        : 2);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>200</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            }),</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>201</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span><span class="takenBranch" title="Branch 5 taken 11 times">&check;</span><span class="takenBranch" title="Branch 8 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22</pre></td>
+    <td align="left" class="src coveredLine"><pre>        std::make_pair&lt;std::string, std::function&lt;uint(uint)>>(</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>202</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            "(n == 1) ? 0 : ((n % 10 >= 2 &amp;&amp; n % 10 &lt;= 4 &amp;&amp; (n % 100 &lt; 12 "</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>203</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            "|| n % 100 > 14)) ? 1 : 2)",</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>204</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11033</pre></td>
+    <td align="left" class="src coveredLine"><pre>            [](uint n) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>205</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 11022 times">&check;</span><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22055</pre></td>
+    <td align="left" class="src coveredLine"><pre>                return (n == 1) ? 0</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>206</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 3300 times">&check;</span><span class="takenBranch" title="Branch 1 taken 5500 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>8800</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                : ((n % 10 >= 2 &amp;&amp; n % 10 &lt;= 4 &amp;&amp;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>207</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 2970 times">&check;</span><span class="takenBranch" title="Branch 1 taken 330 times">&check;</span><span class="takenBranch" title="Branch 2 taken 2640 times">&check;</span><span class="takenBranch" title="Branch 3 taken 330 times">&check;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>3300</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                    (n % 100 &lt; 12 || n % 100 > 14))</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>208</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 8800 times">&check;</span><span class="takenBranch" title="Branch 1 taken 2222 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>19822</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                       ? 1</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>209</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11033</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                       : 2);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>210</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            }),</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>211</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span><span class="takenBranch" title="Branch 5 taken 11 times">&check;</span><span class="takenBranch" title="Branch 8 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22</pre></td>
+    <td align="left" class="src coveredLine"><pre>        std::make_pair&lt;std::string, std::function&lt;uint(uint)>>(</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>212</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            "(n == 1) ? 0 : ((n == 2) ? 1 : 2)",</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>213</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 11022 times">&check;</span><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span><span class="takenBranch" title="Branch 2 taken 11 times">&check;</span><span class="takenBranch" title="Branch 3 taken 11011 times">&check;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>11033</pre></td>
+    <td align="left" class="src coveredLine"><pre>            [](uint n) { return (n == 1) ? 0 : ((n == 2) ? 1 : 2); }),</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>214</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span><span class="takenBranch" title="Branch 5 taken 11 times">&check;</span><span class="takenBranch" title="Branch 8 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22</pre></td>
+    <td align="left" class="src coveredLine"><pre>        std::make_pair&lt;std::string, std::function&lt;uint(uint)>>(</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>215</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            "(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 &amp;&amp; n % 10 == 0) ? 2 : "</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>216</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            "3))",</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>217</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11033</pre></td>
+    <td align="left" class="src coveredLine"><pre>            [](uint n) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>218</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>                return (n == 1)</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>219</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 11022 times">&check;</span><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22055</pre></td>
+    <td align="left" class="src coveredLine"><pre>                           ? 0</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>220</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 11011 times">&check;</span><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span><span class="takenBranch" title="Branch 2 taken 10912 times">&check;</span><span class="takenBranch" title="Branch 3 taken 99 times">&check;</span><br/><span class="takenBranch" title="Branch 4 taken 1111 times">&check;</span><span class="takenBranch" title="Branch 5 taken 9801 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22055</pre></td>
+    <td align="left" class="src coveredLine"><pre>                           : ((n == 2) ? 1 : ((n > 10 &amp;&amp; n % 10 == 0) ? 2 : 3));</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>221</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            }),</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>222</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span><span class="takenBranch" title="Branch 5 taken 11 times">&check;</span><span class="takenBranch" title="Branch 8 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22</pre></td>
+    <td align="left" class="src coveredLine"><pre>        std::make_pair&lt;std::string, std::function&lt;uint(uint)>>(</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>223</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            "(n == 1) ? 0 : ((n == 2) ? 1 : ((n >= 3 &amp;&amp; n &lt;= 6) ? 2 : ((n "</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>224</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            ">= 7 &amp;&amp; n &lt;= 10) ? 3 : 4)))",</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>225</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11033</pre></td>
+    <td align="left" class="src coveredLine"><pre>            [](uint n) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>226</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>                return (n == 1)</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>227</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 11022 times">&check;</span><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22055</pre></td>
+    <td align="left" class="src coveredLine"><pre>                           ? 0</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>228</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 11011 times">&check;</span><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22033</pre></td>
+    <td align="left" class="src coveredLine"><pre>                           : ((n == 2) ? 1</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>229</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 10956 times">&check;</span><span class="takenBranch" title="Branch 1 taken 44 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>11000</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                       : ((n >= 3 &amp;&amp; n &lt;= 6)</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>230</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 11000 times">&check;</span><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22022</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                              ? 2</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>231</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 10956 times">&check;</span><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span><span class="takenBranch" title="Branch 2 taken 44 times">&check;</span><span class="takenBranch" title="Branch 3 taken 10912 times">&check;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>22000</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                              : ((n >= 7 &amp;&amp; n &lt;= 10) ? 3 : 4)));</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>232</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            }),</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>233</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span><span class="takenBranch" title="Branch 5 taken 11 times">&check;</span><span class="takenBranch" title="Branch 8 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22</pre></td>
+    <td align="left" class="src coveredLine"><pre>        std::make_pair&lt;std::string, std::function&lt;uint(uint)>>(</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>234</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            "(n == 1) ? 0 : ((n >= 2 &amp;&amp; n &lt;= 4) ? 1 : 2)",</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>235</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 11022 times">&check;</span><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span><span class="takenBranch" title="Branch 2 taken 11011 times">&check;</span><span class="takenBranch" title="Branch 3 taken 11 times">&check;</span><br/><span class="takenBranch" title="Branch 4 taken 33 times">&check;</span><span class="takenBranch" title="Branch 5 taken 10978 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>11033</pre></td>
+    <td align="left" class="src coveredLine"><pre>            [](uint n) { return (n == 1) ? 0 : ((n >= 2 &amp;&amp; n &lt;= 4) ? 1 : 2); }),</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>236</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span><span class="takenBranch" title="Branch 5 taken 11 times">&check;</span><span class="takenBranch" title="Branch 8 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22</pre></td>
+    <td align="left" class="src coveredLine"><pre>        std::make_pair&lt;std::string, std::function&lt;uint(uint)>>(</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>237</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            "(n == 1 || n == 11) ? 0 : ((n == 2 || n == 12) ? 1 : ((n >= 3 "</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>238</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            "&amp;&amp; n &lt;= 10 || n >= 13 &amp;&amp; n &lt;= 19) ? 2 : 3))",</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>239</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11033</pre></td>
+    <td align="left" class="src coveredLine"><pre>            [](uint n) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>240</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 11011 times">&check;</span><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>11022</pre></td>
+    <td align="left" class="src coveredLine"><pre>                return (n == 1 || n == 11)</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>241</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 11022 times">&check;</span><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22055</pre></td>
+    <td align="left" class="src coveredLine"><pre>                           ? 0</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>242</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 10989 times">&check;</span><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>11000</pre></td>
+    <td align="left" class="src coveredLine"><pre>                           : ((n == 2 || n == 12)</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>243</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 11000 times">&check;</span><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22011</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                  ? 1</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>244</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 10890 times">&check;</span><span class="takenBranch" title="Branch 1 taken 88 times">&check;</span><span class="takenBranch" title="Branch 2 taken 10890 times">&check;</span><span class="takenBranch" title="Branch 3 taken 11 times">&check;</span><br/><span class="takenBranch" title="Branch 4 taken 77 times">&check;</span><span class="takenBranch" title="Branch 5 taken 10813 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>10989</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                  : ((n >= 3 &amp;&amp; n &lt;= 10 || n >= 13 &amp;&amp; n &lt;= 19)</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>245</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 10978 times">&check;</span><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>21978</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                         ? 2</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>246</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11033</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                         : 3));</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>247</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            }),</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>248</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span><span class="takenBranch" title="Branch 5 taken 11 times">&check;</span><span class="takenBranch" title="Branch 8 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22</pre></td>
+    <td align="left" class="src coveredLine"><pre>        std::make_pair&lt;std::string, std::function&lt;uint(uint)>>(</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>249</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            "n != 1 &amp;&amp; n != 2 &amp;&amp; n != 3 &amp;&amp; (n % 10 == 4 || n % 10 == 6 || "</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>250</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            "n % 10 == 9)",</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>251</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11033</pre></td>
+    <td align="left" class="src coveredLine"><pre>            [](uint n) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>252</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 11022 times">&check;</span><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span><span class="takenBranch" title="Branch 2 taken 11011 times">&check;</span><span class="takenBranch" title="Branch 3 taken 11 times">&check;</span><br/><span class="takenBranch" title="Branch 4 taken 11000 times">&check;</span><span class="takenBranch" title="Branch 5 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22033</pre></td>
+    <td align="left" class="src coveredLine"><pre>                return n != 1 &amp;&amp; n != 2 &amp;&amp; n != 3 &amp;&amp;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>253</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 9900 times">&check;</span><span class="takenBranch" title="Branch 1 taken 1100 times">&check;</span><span class="takenBranch" title="Branch 2 taken 8800 times">&check;</span><span class="takenBranch" title="Branch 3 taken 1100 times">&check;</span><br/><span class="takenBranch" title="Branch 4 taken 1100 times">&check;</span><span class="takenBranch" title="Branch 5 taken 7700 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22033</pre></td>
+    <td align="left" class="src coveredLine"><pre>                       (n % 10 == 4 || n % 10 == 6 || n % 10 == 9);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>254</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            }),</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>255</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span><span class="takenBranch" title="Branch 5 taken 11 times">&check;</span><span class="takenBranch" title="Branch 8 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22</pre></td>
+    <td align="left" class="src coveredLine"><pre>        std::make_pair&lt;std::string, std::function&lt;uint(uint)>>(</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>256</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            "n >= 2 &amp;&amp; (n &lt; 11 || n > 99)",</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>257</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 11011 times">&check;</span><span class="takenBranch" title="Branch 1 taken 22 times">&check;</span><span class="takenBranch" title="Branch 2 taken 10912 times">&check;</span><span class="takenBranch" title="Branch 3 taken 99 times">&check;</span><br/><span class="takenBranch" title="Branch 4 taken 9933 times">&check;</span><span class="takenBranch" title="Branch 5 taken 979 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>11033</pre></td>
+    <td align="left" class="src coveredLine"><pre>            [](uint n) { return n >= 2 &amp;&amp; (n &lt; 11 || n > 99); }),</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>258</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span><span class="takenBranch" title="Branch 5 taken 11 times">&check;</span><span class="takenBranch" title="Branch 8 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22</pre></td>
+    <td align="left" class="src coveredLine"><pre>        std::make_pair&lt;std::string, std::function&lt;uint(uint)>>(</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>259</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11033</pre></td>
+    <td align="left" class="src coveredLine"><pre>            "5", [](uint) { return 5; }),</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>260</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 28 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>605</pre></td>
+    <td align="left" class="src coveredLine"><pre>    };</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>261</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre></pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>262</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11</pre></td>
+    <td align="left" class="src coveredLine"><pre>    bool success{true};</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>263</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>286</pre></td>
+    <td align="left" class="src coveredLine"><pre>    for (const std::pair&lt;const std::string, std::function&lt;uint(uint)>>&amp;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>264</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 3 taken 286 times">&check;</span><span class="takenBranch" title="Branch 4 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>583</pre></td>
+    <td align="left" class="src coveredLine"><pre>             key_value : test_expressions) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>265</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 286 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>572</pre></td>
+    <td align="left" class="src coveredLine"><pre>        std::vector&lt;uint> values{140000, 160000};</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>266</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 286286 times">&check;</span><span class="takenBranch" title="Branch 1 taken 286 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>286572</pre></td>
+    <td align="left" class="src coveredLine"><pre>        for (uint idx = 0; idx &lt;= 1000; ++idx) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>267</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 286286 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>286286</pre></td>
+    <td align="left" class="src coveredLine"><pre>            values.push_back(idx);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>268</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>        }</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>269</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre></pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>270</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 3 taken 286858 times">&check;</span><span class="takenBranch" title="Branch 4 taken 286 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>287144</pre></td>
+    <td align="left" class="src coveredLine"><pre>        for (const auto idx : values) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>271</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 286858 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>286858</pre></td>
+    <td align="left" class="src coveredLine"><pre>            uint truth{key_value.second(idx)};</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>272</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 286858 times">&check;</span><span class="notTakenBranch" title="Branch 1 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>286858</pre></td>
+    <td align="left" class="src coveredLine"><pre>            if (verbose) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>273</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 286858 times">&check;</span><span class="takenBranch" title="Branch 4 taken 286858 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>286858</pre></td>
+    <td align="left" class="src coveredLine"><pre>                std::cout &lt;&lt; "-----------------------------------" &lt;&lt; std::endl;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>274</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 286858 times">&check;</span><span class="takenBranch" title="Branch 4 taken 286858 times">&check;</span><span class="takenBranch" title="Branch 7 taken 286858 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>286858</pre></td>
+    <td align="left" class="src coveredLine"><pre>                std::cout &lt;&lt; "Statement: " &lt;&lt; std::quoted(key_value.first)</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>275</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 286858 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>286858</pre></td>
+    <td align="left" class="src coveredLine"><pre>                          &lt;&lt; std::endl;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>276</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 286858 times">&check;</span><span class="takenBranch" title="Branch 4 taken 286858 times">&check;</span><span class="takenBranch" title="Branch 7 taken 286858 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>286858</pre></td>
+    <td align="left" class="src coveredLine"><pre>                std::cout &lt;&lt; "n: " &lt;&lt; idx &lt;&lt; std::endl;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>277</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 286858 times">&check;</span><span class="takenBranch" title="Branch 4 taken 286858 times">&check;</span><span class="takenBranch" title="Branch 7 taken 286858 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>286858</pre></td>
+    <td align="left" class="src coveredLine"><pre>                std::cout &lt;&lt; "Truth: " &lt;&lt; truth &lt;&lt; std::endl;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>278</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            }</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>279</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre></pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>280</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 286858 times">&check;</span><span class="takenBranch" title="Branch 3 taken 286858 times">&check;</span><span class="notTakenBranch" title="Branch 4 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>286858</pre></td>
+    <td align="left" class="src coveredLine"><pre>            if (!drv.parse(key_value.first, idx)) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>281</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 286858 times">&check;</span><span class="notTakenBranch" title="Branch 1 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>286858</pre></td>
+    <td align="left" class="src coveredLine"><pre>                if (verbose) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>282</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 286858 times">&check;</span><span class="takenBranch" title="Branch 4 taken 286858 times">&check;</span><span class="takenBranch" title="Branch 7 taken 286858 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>286858</pre></td>
+    <td align="left" class="src coveredLine"><pre>                    std::cout &lt;&lt; "Result: " &lt;&lt; drv.result &lt;&lt; std::endl;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>283</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 286858 times">&check;</span><span class="notTakenBranch" title="Branch 1 not taken">&cross;</span><span class="takenBranch" title="Branch 3 taken 286858 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>286858</pre></td>
+    <td align="left" class="src coveredLine"><pre>                    std::cout &lt;&lt; (drv.result == truth ? "Success" : "Failure")</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>284</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 286858 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>286858</pre></td>
+    <td align="left" class="src coveredLine"><pre>                              &lt;&lt; std::endl;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>285</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>                }</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>286</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            } else {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>287</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
+    <td align="left" class="src uncoveredLine"><pre>                success = false;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>288</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            }</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>289</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre></pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>290</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 286858 times">&check;</span><span class="notTakenBranch" title="Branch 1 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>286858</pre></td>
+    <td align="left" class="src coveredLine"><pre>            if (verbose) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>291</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 286858 times">&check;</span><span class="takenBranch" title="Branch 4 taken 286858 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>286858</pre></td>
+    <td align="left" class="src coveredLine"><pre>                std::cout &lt;&lt; "-----------------------------------" &lt;&lt; std::endl;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>292</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            }</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>293</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>        }</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>294</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>    }</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>295</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre></pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>296</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>    // Now test some statements that should fail.</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>297</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>11</pre></td>
+    <td align="left" class="src coveredLine"><pre>    std::string expression{"n ^ 3 > 5 ? 1 : 0"};</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>298</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 11 times">&check;</span><span class="notTakenBranch" title="Branch 1 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>11</pre></td>
+    <td align="left" class="src coveredLine"><pre>    if (verbose) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>299</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span><span class="takenBranch" title="Branch 4 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>11</pre></td>
+    <td align="left" class="src coveredLine"><pre>        std::cout &lt;&lt; "-----------------------------------" &lt;&lt; std::endl;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>300</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span><span class="takenBranch" title="Branch 4 taken 11 times">&check;</span><span class="takenBranch" title="Branch 7 taken 11 times">&check;</span><span class="takenBranch" title="Branch 10 taken 11 times">&check;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>11</pre></td>
+    <td align="left" class="src coveredLine"><pre>        std::cout &lt;&lt; "Statement: " &lt;&lt; std::quoted(expression) &lt;&lt; std::endl;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>301</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span><span class="takenBranch" title="Branch 4 taken 11 times">&check;</span><span class="takenBranch" title="Branch 7 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>11</pre></td>
+    <td align="left" class="src coveredLine"><pre>        std::cout &lt;&lt; "n: " &lt;&lt; 2 &lt;&lt; std::endl;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>302</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span><span class="takenBranch" title="Branch 4 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>11</pre></td>
+    <td align="left" class="src coveredLine"><pre>        std::cout &lt;&lt; "Truth: unparsable" &lt;&lt; std::endl;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>303</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>    }</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>304</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre></pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>305</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span><span class="takenBranch" title="Branch 4 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>11</pre></td>
+    <td align="left" class="src coveredLine"><pre>    if (!drv.parse(expression, 2)) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>306</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
+    <td align="left" class="src uncoveredLine"><pre>        std::cout &lt;&lt; "Result: " &lt;&lt; drv.result &lt;&lt; std::endl;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>307</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
+    <td align="left" class="src uncoveredLine"><pre>        std::cout &lt;&lt; "Failure" &lt;&lt; std::endl;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>308</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
+    <td align="left" class="src uncoveredLine"><pre>        success = false;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>309</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>    } else {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>310</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span><span class="takenBranch" title="Branch 4 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>11</pre></td>
+    <td align="left" class="src coveredLine"><pre>        std::cout &lt;&lt; "Result: unparsable" &lt;&lt; std::endl;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>311</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span><span class="takenBranch" title="Branch 4 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>11</pre></td>
+    <td align="left" class="src coveredLine"><pre>        std::cout &lt;&lt; "Success" &lt;&lt; std::endl;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>312</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>    }</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>313</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre></pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>314</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>22</pre></td>
+    <td align="left" class="src coveredLine"><pre>    return success;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>315</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>}</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>316</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre></pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>317</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>bool</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>318</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11</pre></td>
+    <td align="left" class="src coveredLine"><pre>evaluate_plural_forms(</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>319</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>    driver&amp; drv,</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>320</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>    const std::string&amp; plural_forms,</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>321</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>    const uint n,</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>322</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>    const bool verbose) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>323</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11</pre></td>
+    <td align="left" class="src coveredLine"><pre>    bool success{true};</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>324</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre></pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>325</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 11 times">&check;</span><span class="notTakenBranch" title="Branch 1 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>11</pre></td>
+    <td align="left" class="src coveredLine"><pre>    if (verbose) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>326</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11</pre></td>
+    <td align="left" class="src coveredLine"><pre>        std::cout &lt;&lt; "-----------------------------------" &lt;&lt; std::endl;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>327</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 3 taken 11 times">&check;</span><span class="takenBranch" title="Branch 6 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>11</pre></td>
+    <td align="left" class="src coveredLine"><pre>        std::cout &lt;&lt; "Statement: " &lt;&lt; std::quoted(plural_forms) &lt;&lt; std::endl;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>328</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11</pre></td>
+    <td align="left" class="src coveredLine"><pre>        std::cout &lt;&lt; "n: " &lt;&lt; n &lt;&lt; std::endl;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>329</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>    }</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>330</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre></pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>331</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>11</pre></td>
+    <td align="left" class="src coveredLine"><pre>    if (!drv.parse(plural_forms, n)) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>332</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 11 times">&check;</span><span class="notTakenBranch" title="Branch 1 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>11</pre></td>
+    <td align="left" class="src coveredLine"><pre>        if (verbose) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>333</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11</pre></td>
+    <td align="left" class="src coveredLine"><pre>            std::cout &lt;&lt; "Result: " &lt;&lt; drv.result &lt;&lt; std::endl;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>334</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>        }</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>335</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>    } else {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>336</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
+    <td align="left" class="src uncoveredLine"><pre>        std::cout &lt;&lt; "Failed to parse plural-forms." &lt;&lt; std::endl;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>337</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
+    <td align="left" class="src uncoveredLine"><pre>        success = false;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>338</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>    }</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>339</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre></pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>340</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 11 times">&check;</span><span class="notTakenBranch" title="Branch 1 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>11</pre></td>
+    <td align="left" class="src coveredLine"><pre>    if (verbose) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>341</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11</pre></td>
+    <td align="left" class="src coveredLine"><pre>        std::cout &lt;&lt; "-----------------------------------" &lt;&lt; std::endl;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>342</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>    }</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>343</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre></pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>344</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11</pre></td>
+    <td align="left" class="src coveredLine"><pre>    return success;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>345</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>}</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>346</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre></pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>347</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>int</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>348</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11</pre></td>
+    <td align="left" class="src coveredLine"><pre>main(int argc, char* argv[]) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>349</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22</pre></td>
+    <td align="left" class="src coveredLine"><pre>    driver drv;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>350</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>    CLI::App app{</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>351</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>        "plurals-parser is a CLI tool that computes the result of a "</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>352</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>        "Gettext "</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>353</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 11 times">&check;</span><span class="takenBranch" title="Branch 6 taken 11 times">&check;</span><span class="takenBranch" title="Branch 9 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>33</pre></td>
+    <td align="left" class="src coveredLine"><pre>        "plural-forms ternary."};</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>354</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre></pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>355</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>    CLI::App* eval{</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>356</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 11 times">&check;</span><span class="takenBranch" title="Branch 6 taken 11 times">&check;</span><span class="takenBranch" title="Branch 9 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>11</pre></td>
+    <td align="left" class="src coveredLine"><pre>        app.add_subcommand("eval", "Evaluate a plural-forms ternary.")};</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>357</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre></pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>358</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>22</pre></td>
+    <td align="left" class="src coveredLine"><pre>    std::string plural_forms;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>359</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 11 times">&check;</span><span class="takenBranch" title="Branch 6 taken 11 times">&check;</span><span class="takenBranch" title="Branch 9 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22</pre></td>
+    <td align="left" class="src coveredLine"><pre>    eval->add_option(</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>360</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            "plural-forms", plural_forms, "A Gettext plural-forms ternary.")</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>361</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11</pre></td>
+    <td align="left" class="src coveredLine"><pre>        ->required(true);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>362</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre></pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>363</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11</pre></td>
+    <td align="left" class="src coveredLine"><pre>    uint n{0};</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>364</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 11 times">&check;</span><span class="takenBranch" title="Branch 6 taken 11 times">&check;</span><span class="takenBranch" title="Branch 9 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>11</pre></td>
+    <td align="left" class="src coveredLine"><pre>    eval->add_option("-n,--n", n, "The value of n.")->required(true);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>365</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre></pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>366</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11</pre></td>
+    <td align="left" class="src coveredLine"><pre>    bool trace_parsing{false};</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>367</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 11 times">&check;</span><span class="takenBranch" title="Branch 6 taken 11 times">&check;</span><span class="takenBranch" title="Branch 9 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22</pre></td>
+    <td align="left" class="src coveredLine"><pre>    eval->add_flag("-p,--trace-parsing", trace_parsing, "Enable trace parsing.")</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>368</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11</pre></td>
+    <td align="left" class="src coveredLine"><pre>        ->required(false);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>369</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre></pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>370</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11</pre></td>
+    <td align="left" class="src coveredLine"><pre>    bool trace_scanning{false};</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>371</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 11 times">&check;</span><span class="takenBranch" title="Branch 6 taken 11 times">&check;</span><span class="takenBranch" title="Branch 9 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22</pre></td>
+    <td align="left" class="src coveredLine"><pre>    eval->add_flag(</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>372</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            "-s,--trace-scanning", trace_scanning, "Enable trace scanning.")</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>373</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11</pre></td>
+    <td align="left" class="src coveredLine"><pre>        ->required(false);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>374</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre></pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>375</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11</pre></td>
+    <td align="left" class="src coveredLine"><pre>    bool verbose_eval{false};</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>376</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 11 times">&check;</span><span class="takenBranch" title="Branch 6 taken 11 times">&check;</span><span class="takenBranch" title="Branch 9 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22</pre></td>
+    <td align="left" class="src coveredLine"><pre>    eval->add_flag("-v,--verbose", verbose_eval, "Be verbose.")</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>377</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11</pre></td>
+    <td align="left" class="src coveredLine"><pre>        ->required(false);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>378</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre></pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>379</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 11 times">&check;</span><span class="takenBranch" title="Branch 6 taken 11 times">&check;</span><span class="takenBranch" title="Branch 9 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>11</pre></td>
+    <td align="left" class="src coveredLine"><pre>    CLI::App* test{app.add_subcommand("test", "Run test suite.")};</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>380</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11</pre></td>
+    <td align="left" class="src coveredLine"><pre>    bool verbose_test{false};</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>381</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 11 times">&check;</span><span class="takenBranch" title="Branch 6 taken 11 times">&check;</span><span class="takenBranch" title="Branch 9 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>22</pre></td>
+    <td align="left" class="src coveredLine"><pre>    test->add_flag("-v,--verbose", verbose_test, "Be verbose.")</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>382</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11</pre></td>
+    <td align="left" class="src coveredLine"><pre>        ->required(false);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>383</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre></pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>384</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span><span class="notTakenBranch" title="Branch 5 not taken">&cross;</span><span class="notTakenBranch" title="Branch 6 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>11</pre></td>
+    <td align="left" class="src coveredLine"><pre>    CLI11_PARSE(app, argc, argv);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>385</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre></pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>386</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11</pre></td>
+    <td align="left" class="src coveredLine"><pre>    bool success{true};</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>387</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 11 times">&check;</span><span class="takenBranch" title="Branch 5 taken 11 times">&check;</span><span class="takenBranch" title="Branch 9 taken 11 times">&check;</span><span class="notTakenBranch" title="Branch 10 not taken">&cross;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>11</pre></td>
+    <td align="left" class="src coveredLine"><pre>    if (app.got_subcommand("test")) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>388</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span><span class="takenBranch" title="Branch 4 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>11</pre></td>
+    <td align="left" class="src coveredLine"><pre>        if (!run_tests(drv, verbose_test)) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>389</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
+    <td align="left" class="src uncoveredLine"><pre>            success = false;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>390</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
+    <td align="left" class="src uncoveredLine"><pre>            std::cout &lt;&lt; "Tests failed." &lt;&lt; std::endl;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>391</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>        } else {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>392</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span><span class="takenBranch" title="Branch 4 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>11</pre></td>
+    <td align="left" class="src coveredLine"><pre>            std::cout &lt;&lt; "Tests passed." &lt;&lt; std::endl;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>393</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>        }</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>394</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>    }</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>395</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre></pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>396</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 11 times">&check;</span><span class="takenBranch" title="Branch 5 taken 11 times">&check;</span><span class="takenBranch" title="Branch 9 taken 11 times">&check;</span><span class="notTakenBranch" title="Branch 10 not taken">&cross;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>11</pre></td>
+    <td align="left" class="src coveredLine"><pre>    if (app.got_subcommand("eval")) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>397</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11</pre></td>
+    <td align="left" class="src coveredLine"><pre>        drv.trace_parsing = trace_parsing;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>398</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>11</pre></td>
+    <td align="left" class="src coveredLine"><pre>        drv.trace_scanning = trace_scanning;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>399</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span><span class="takenBranch" title="Branch 4 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>11</pre></td>
+    <td align="left" class="src coveredLine"><pre>        if (!evaluate_plural_forms(drv, plural_forms, n, verbose_eval)) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>400</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>            std::cout &lt;&lt; "Failed to parse plural-forms expression. Try running "</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>401</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>                         "with --verbose, --trace-parsing, or --trace-scanning "</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>402</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
+    <td align="left" class="src uncoveredLine"><pre>                         "for more information."</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>403</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
+    <td align="left" class="src uncoveredLine"><pre>                      &lt;&lt; std::endl;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>404</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
+    <td align="left" class="src uncoveredLine"><pre>            return EXIT_FAILURE;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>405</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>        }</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>406</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 11 times">&check;</span><span class="takenBranch" title="Branch 4 taken 11 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>11</pre></td>
+    <td align="left" class="src coveredLine"><pre>        std::cout &lt;&lt; drv.result &lt;&lt; std::endl;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>407</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>    }</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>408</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre></pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>409</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 11 times">&check;</span><span class="notTakenBranch" title="Branch 1 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>11</pre></td>
+    <td align="left" class="src coveredLine"><pre>    return success ? EXIT_SUCCESS : EXIT_FAILURE;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>410</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>}</pre></td>
+    </tr>
+
+  </table>
+  <br>
+
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr><td class="hr"><td></tr>
+    <tr><td class="footer">Generated by: <a href="http://gcovr.com">GCOVR (Version 4.2)</a></td></tr>
+  </table>
+  <br>
+
+</body>
+
+</html>
+

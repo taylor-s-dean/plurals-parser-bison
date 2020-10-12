@@ -68,7 +68,6 @@ unit: if_statement  { drv.result = $1; };
 
 if_statement:
   expression
-| expression "?" if_statement
 | expression "?" if_statement ":" if_statement { $$ = $1 ? $3 : $5; }
 ;
 

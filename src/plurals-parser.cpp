@@ -255,12 +255,19 @@ run_tests(driver& drv, const bool verbose) {
         std::make_pair<std::string, std::function<uint(uint)>>(
             "n >= 2 && (n < 11 || n > 99)",
             [](uint n) { return n >= 2 && (n < 11 || n > 99); }),
+        std::make_pair<std::string, std::function<uint(uint)>>(
+            "5", [](uint) { return 5; }),
     };
 
     bool success{true};
     for (const std::pair<const std::string, std::function<uint(uint)>>&
              key_value : test_expressions) {
+        std::vector<uint> values{140000, 160000};
         for (uint idx = 0; idx <= 1000; ++idx) {
+            values.push_back(idx);
+        }
+
+        for (const auto idx : values) {
             uint truth{key_value.second(idx)};
             if (verbose) {
                 std::cout << "-----------------------------------" << std::endl;
@@ -284,6 +291,24 @@ run_tests(driver& drv, const bool verbose) {
                 std::cout << "-----------------------------------" << std::endl;
             }
         }
+    }
+
+    // Now test some statements that should fail.
+    std::string expression{"n ^ 3 > 5 ? 1 : 0"};
+    if (verbose) {
+        std::cout << "-----------------------------------" << std::endl;
+        std::cout << "Statement: " << std::quoted(expression) << std::endl;
+        std::cout << "n: " << 2 << std::endl;
+        std::cout << "Truth: unparsable" << std::endl;
+    }
+
+    if (!drv.parse(expression, 2)) {
+        std::cout << "Result: " << drv.result << std::endl;
+        std::cout << "Failure" << std::endl;
+        success = false;
+    } else {
+        std::cout << "Result: unparsable" << std::endl;
+        std::cout << "Success" << std::endl;
     }
 
     return success;
@@ -323,7 +348,8 @@ int
 main(int argc, char* argv[]) {
     driver drv;
     CLI::App app{
-        "plurals-parser is a CLI tool that computes the result of a Gettext "
+        "plurals-parser is a CLI tool that computes the result of a "
+        "Gettext "
         "plural-forms ternary."};
 
     CLI::App* eval{
@@ -337,12 +363,13 @@ main(int argc, char* argv[]) {
     uint n{0};
     eval->add_option("-n,--n", n, "The value of n.")->required(true);
 
-    eval->add_flag(
-            "-p,--trace-parsing", drv.trace_parsing, "Enable trace parsing.")
+    bool trace_parsing{false};
+    eval->add_flag("-p,--trace-parsing", trace_parsing, "Enable trace parsing.")
         ->required(false);
 
+    bool trace_scanning{false};
     eval->add_flag(
-            "-s,--trace-scanning", drv.trace_scanning, "Enable trace scanning.")
+            "-s,--trace-scanning", trace_scanning, "Enable trace scanning.")
         ->required(false);
 
     bool verbose_eval{false};
@@ -356,8 +383,10 @@ main(int argc, char* argv[]) {
 
     CLI11_PARSE(app, argc, argv);
 
+    bool success{true};
     if (app.got_subcommand("test")) {
         if (!run_tests(drv, verbose_test)) {
+            success = false;
             std::cout << "Tests failed." << std::endl;
         } else {
             std::cout << "Tests passed." << std::endl;
@@ -365,6 +394,8 @@ main(int argc, char* argv[]) {
     }
 
     if (app.got_subcommand("eval")) {
+        drv.trace_parsing = trace_parsing;
+        drv.trace_scanning = trace_scanning;
         if (!evaluate_plural_forms(drv, plural_forms, n, verbose_eval)) {
             std::cout << "Failed to parse plural-forms expression. Try running "
                          "with --verbose, --trace-parsing, or --trace-scanning "
@@ -375,5 +406,5 @@ main(int argc, char* argv[]) {
         std::cout << drv.result << std::endl;
     }
 
-    return EXIT_SUCCESS;
+    return success ? EXIT_SUCCESS : EXIT_FAILURE;
 }
