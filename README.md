@@ -1,6 +1,7 @@
 ![Ubuntu 18.04 Test](https://github.com/taylor-s-dean/plurals-parser-bison/workflows/Ubuntu%2018.04%20Test/badge.svg)
 ![Ubuntu 20.04 Test](https://github.com/taylor-s-dean/plurals-parser-bison/workflows/Ubuntu%2020.04%20Test/badge.svg)
 ![Ubuntu Latest Test](https://github.com/taylor-s-dean/plurals-parser-bison/workflows/Ubuntu%20Latest%20Test/badge.svg)
+![CodeQL](https://github.com/taylor-s-dean/plurals-parser-bison/workflows/CodeQL/badge.svg)
 
 # plurals-parser
 
