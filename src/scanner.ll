@@ -34,6 +34,13 @@ blank   [ \t\r]
     loc.step ();
 %}
 
+{blank}+    loc.step();
+;           loc.step();
+\n+         {
+                loc.lines(yyleng);
+                loc.step();
+            }
+
 {id}        return yy::parser::make_IDENTIFIER  (yytext, loc);
 {int}       return make_NUMBER                  (yytext, loc);
 "%"         return yy::parser::make_MOD         (loc);
