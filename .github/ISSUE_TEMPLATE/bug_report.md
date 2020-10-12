@@ -24,7 +24,7 @@ Precise steps to reproduce behavior.
 A clear and concise description of what you expected to happen.
 
 **Logs/Output**
-If applicable, add screenshots to help explain your problem.
+Provide as many detailed logs related to this bug as possible.
 
 **Additional context**
 Add any other context about the problem here.
