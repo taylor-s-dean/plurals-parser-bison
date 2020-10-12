@@ -66,3 +66,5 @@ Result: 3
 -----------------------------------
 3
 ```
+
+[Code Coverage](https://github.makeshift.dev/plurals-parser-bison/code-coverage/index.html)

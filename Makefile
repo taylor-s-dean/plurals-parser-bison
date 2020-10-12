@@ -92,7 +92,6 @@ test: pre-build plurals-parser
 			--exclude-throw-branches \
 			--html \
 			--html-details \
-			-j 8 \
 			--output $(GCOV)/index.html; \
 	else \
 		echo "INFO: $(GCOVR) is not installed on the system. Please install with \"pip install $(GCOVR)\""; \
