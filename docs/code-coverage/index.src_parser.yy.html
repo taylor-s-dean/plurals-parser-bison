@@ -275,7 +275,7 @@
           </tr>
           <tr>
             <td class="headerName">Date:</td>
-            <td class="headerValue">2020-10-12 14:16:49</td>
+            <td class="headerValue">2020-10-12 14:48:32</td>
             <td></td>
             <td class="headerName">Branches:</td>
             <td class="headerTableEntry">11</td>
@@ -673,7 +673,7 @@
     <tr>
     <td align="right" class="lineno"><pre>54</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>330</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>30</pre></td>
     <td align="left" class="src coveredLine"><pre>%printer { yyo &lt;&lt; $$; } &lt;*>;</pre></td>
     </tr>
 
@@ -764,7 +764,7 @@
     <tr>
     <td align="right" class="lineno"><pre>67</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>286869</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>26079</pre></td>
     <td align="left" class="src coveredLine"><pre>unit: if_statement  { drv.result = $1; };</pre></td>
     </tr>
 
@@ -785,14 +785,14 @@
     <tr>
     <td align="right" class="lineno"><pre>70</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>2085259</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>189569</pre></td>
     <td align="left" class="src coveredLine"><pre>  expression</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>71</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 44165 times">&check;</span><span class="takenBranch" title="Branch 3 taken 573694 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>617859</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 4015 times">&check;</span><span class="takenBranch" title="Branch 3 taken 52154 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>56169</pre></td>
     <td align="left" class="src coveredLine"><pre>| expression "?" if_statement ":" if_statement { $$ = $1 ? $3 : $5; }</pre></td>
     </tr>
 
@@ -813,7 +813,7 @@
     <tr>
     <td align="right" class="lineno"><pre>74</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>981937</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>89267</pre></td>
     <td align="left" class="src coveredLine"><pre>multiplicative: expression "%" expression   { $$ = $1 % $3; };</pre></td>
     </tr>
 
@@ -827,7 +827,7 @@
     <tr>
     <td align="right" class="lineno"><pre>76</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>1180531</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>107321</pre></td>
     <td align="left" class="src coveredLine"><pre>associative: "(" if_statement ")"   { $$ = $2; };</pre></td>
     </tr>
 
@@ -848,28 +848,28 @@
     <tr>
     <td align="right" class="lineno"><pre>79</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>88264</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>8024</pre></td>
     <td align="left" class="src coveredLine"><pre>  expression "&lt;" expression  { $$ = $1 &lt; $3; }</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>80</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>176528</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>16048</pre></td>
     <td align="left" class="src coveredLine"><pre>| expression "&lt;=" expression { $$ = $1 &lt;= $3; }</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>81</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>110341</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>10031</pre></td>
     <td align="left" class="src coveredLine"><pre>| expression ">" expression  { $$ = $1 > $3; }</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>82</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>187561</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>17051</pre></td>
     <td align="left" class="src coveredLine"><pre>| expression ">=" expression { $$ = $1 >= $3; }</pre></td>
     </tr>
 
@@ -897,14 +897,14 @@
     <tr>
     <td align="right" class="lineno"><pre>86</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>838508</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>76228</pre></td>
     <td align="left" class="src coveredLine"><pre>  expression "==" expression { $$ = $1 == $3; }</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>87</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>176528</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>16048</pre></td>
     <td align="left" class="src coveredLine"><pre>| expression "!=" expression { $$ = $1 != $3; }</pre></td>
     </tr>
 
@@ -931,15 +931,15 @@
 
     <tr>
     <td align="right" class="lineno"><pre>91</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 275517 times">&check;</span><span class="takenBranch" title="Branch 3 taken 165803 times">&check;</span><span class="takenBranch" title="Branch 6 taken 98472 times">&check;</span><span class="takenBranch" title="Branch 7 taken 177045 times">&check;</span><br/></td>
-    <td align="right" class="linecount coveredLine"><pre>441320</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 25047 times">&check;</span><span class="takenBranch" title="Branch 3 taken 15073 times">&check;</span><span class="takenBranch" title="Branch 6 taken 8952 times">&check;</span><span class="takenBranch" title="Branch 7 taken 16095 times">&check;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>40120</pre></td>
     <td align="left" class="src coveredLine"><pre>  expression "&amp;&amp;" expression { $$ = $1 &amp;&amp; $3; }</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>92</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 415624 times">&check;</span><span class="takenBranch" title="Branch 3 taken 47762 times">&check;</span><span class="takenBranch" title="Branch 6 taken 67738 times">&check;</span><span class="takenBranch" title="Branch 7 taken 347886 times">&check;</span><br/></td>
-    <td align="right" class="linecount coveredLine"><pre>463386</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 37784 times">&check;</span><span class="takenBranch" title="Branch 3 taken 4342 times">&check;</span><span class="takenBranch" title="Branch 6 taken 6158 times">&check;</span><span class="takenBranch" title="Branch 7 taken 31626 times">&check;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>42126</pre></td>
     <td align="left" class="src coveredLine"><pre>| expression "||" expression { $$ = $1 || $3; }</pre></td>
     </tr>
 
@@ -967,49 +967,49 @@
     <tr>
     <td align="right" class="lineno"><pre>96</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>3409230</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>309930</pre></td>
     <td align="left" class="src coveredLine"><pre>  "number"</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>97</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 3 taken 1577741 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>1577741</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 3 taken 143431 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>143431</pre></td>
     <td align="left" class="src coveredLine"><pre>| "identifier"  { $$ = drv.variables[$1]; }</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>98</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>1180531</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>107321</pre></td>
     <td align="left" class="src coveredLine"><pre>| associative</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>99</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>981937</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>89267</pre></td>
     <td align="left" class="src coveredLine"><pre>| multiplicative</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>100</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>562694</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>51154</pre></td>
     <td align="left" class="src coveredLine"><pre>| relational</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>101</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>1015036</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>92276</pre></td>
     <td align="left" class="src coveredLine"><pre>| equality</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>102</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>904706</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>82246</pre></td>
     <td align="left" class="src coveredLine"><pre>| logical</pre></td>
     </tr>
 
@@ -1037,21 +1037,21 @@
     <tr>
     <td align="right" class="lineno"><pre>106</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>11</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>1</pre></td>
     <td align="left" class="src coveredLine"><pre>void yy::parser::error (const location_type&amp; l, const std::string&amp; m) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>107</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>11</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>1</pre></td>
     <td align="left" class="src coveredLine"><pre>    std::cerr &lt;&lt; l &lt;&lt; ": " &lt;&lt; m &lt;&lt; '\n';</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>108</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>11</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>1</pre></td>
     <td align="left" class="src coveredLine"><pre>}</pre></td>
     </tr>
 
