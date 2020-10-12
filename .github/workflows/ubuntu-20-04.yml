@@ -12,7 +12,9 @@ jobs:
 
         steps:
             - uses: actions/checkout@v2
-            - name: install gcovr
-              run: pip install gcovr
+            - name: Install dependencies
+              run: |
+                  sudo apt update
+                  sudo apt install gcovr
             - name: make test
               run: make test
