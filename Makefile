@@ -5,7 +5,7 @@ GCOVR = gcovr
 
 ODIR = obj
 SDIR = src
-GCOV = code-coverage
+GCOV = docs/code-coverage
 
 CFLAGS_DEFAULT = -I./$(SDIR)                   \
 				 -I./third_party/CLI11/include \
@@ -93,7 +93,7 @@ test: pre-build plurals-parser
 			--html \
 			--html-details \
 			-j 8 \
-			--output $(GCOV)/code-coverage.html; \
+			--output $(GCOV)/index.html; \
 	else \
 		echo "INFO: $(GCOVR) is not installed on the system. Please install with \"pip install $(GCOVR)\""; \
 		exit 1; \
