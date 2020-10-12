@@ -1,17 +1,18 @@
 name: Ubuntu 20.04 Test
 
 on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    push:
+        branches: [master]
+    pull_request:
+        branches: [master]
 
 jobs:
-  build:
+    build:
+        runs-on: ubuntu-20.04
 
-    runs-on: ubuntu-20.04
-
-    steps:
-    - uses: actions/checkout@v2
-    - name: make test
-      run: make test
+        steps:
+            - uses: actions/checkout@v2
+            - name: install gcovr
+              run: pip install gcovr
+            - name: make test
+              run: make test

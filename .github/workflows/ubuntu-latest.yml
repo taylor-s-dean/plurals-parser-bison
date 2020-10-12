@@ -12,5 +12,7 @@ jobs:
 
         steps:
             - uses: actions/checkout@v2
+            - name: install gcovr
+              run: pip install gcovr
             - name: make test
               run: make test
