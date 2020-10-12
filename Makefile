@@ -5,21 +5,27 @@ CXX = clang++
 ODIR = obj
 SDIR = src
 
-CFLAGS = -I./$(SDIR)                   \
-		 -I./third_party/CLI11/include \
-		 -O1                           \
-		 -g                            \
-		 -Werror                       \
-		 -Wall                         \
-		 -Wextra                       \
-		 -Wshadow                      \
-		 -Wdouble-promotion            \
-		 -Wformat=2                    \
-		 -Wundef                       \
-		 -Wconversion                  \
-		 -fno-common                   \
-		 -Wno-logical-op-parentheses   \
-		 -Wno-sign-conversion
+CFLAGS_DEFAULT = -I./$(SDIR)                   \
+				 -I./third_party/CLI11/include \
+				 -g                            \
+				 -Werror                       \
+				 -Wall                         \
+				 -Wextra                       \
+				 -Wshadow                      \
+				 -Wdouble-promotion            \
+				 -Wformat=2                    \
+				 -Wundef                       \
+				 -Wconversion                  \
+				 -fno-common                   \
+				 -Wno-logical-op-parentheses   \
+				 -Wno-sign-conversion
+
+all: CFLAGS = $(CFLAGS_DEFAULT) \
+			  -O1
+
+test: CFLAGS = $(CFLAGS_DEFAULT) \
+			   -fprofile-arcs    \
+			   -ftest-coverage
 
 .PHONY: all clean
 .SECONDARY: main-build
