@@ -109,4 +109,6 @@ clean:
 		$(SDIR)/parser.hpp \
 		$(SDIR)/scanner.cpp \
 		$(SDIR)/location.hh \
+		$(SDIR)/stack.hh \
+		$(SDIR)/position.hh \
 		./plurals-parser
