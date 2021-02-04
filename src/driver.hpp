@@ -14,15 +14,25 @@ typedef struct yy_buffer_state* YY_BUFFER_STATE;
 class driver {
   public:
     typedef unsigned int uint;
-    driver();
+    driver() : trace_parsing(false), trace_scanning(false) {}
 
     std::map<std::string, uint> variables;
 
     uint result;
 
     // Run the parser on file_contents.  Return 0 on success.
-    int parse(const std::string& file_contents, const uint n);
-
+    int
+    parse(const std::string& f, const uint n) {
+        file_contents = f;
+        location.initialize();
+        variables["n"] = n;
+        scan_begin();
+        yy::parser parser(*this);
+        parser.set_debug_level(trace_parsing);
+        int res = parser.parse();
+        scan_end();
+        return res;
+    }
     // The file contents to scan.
     std::string file_contents;
     YY_BUFFER_STATE buffer;
