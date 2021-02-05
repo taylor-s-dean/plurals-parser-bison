@@ -33,7 +33,7 @@
 
 /**
  ** \file src/parser.hpp
- ** Define the yy::parser class.
+ ** Define the pp::parser class.
  */
 
 // C++ LALR(1) parser skeleton written by Akim Demaille.
@@ -42,10 +42,10 @@
 // especially those whose name start with YY_ or yy_.  They are
 // private implementation details that can be changed or removed.
 
-#ifndef YY_YY_SRC_PARSER_HPP_INCLUDED
-# define YY_YY_SRC_PARSER_HPP_INCLUDED
+#ifndef YY_PP_SRC_PARSER_HPP_INCLUDED
+# define YY_PP_SRC_PARSER_HPP_INCLUDED
 // "%code requires" blocks.
-#line 14 "src/parser.yy"
+#line 15 "src/parser.yy"
 
     #include <string>
     class driver;
@@ -179,12 +179,20 @@
 # endif
 
 /* Debug traces.  */
-#ifndef YYDEBUG
-# define YYDEBUG 1
-#endif
+#ifndef PPDEBUG
+# if defined YYDEBUG
+#if YYDEBUG
+#   define PPDEBUG 1
+#  else
+#   define PPDEBUG 0
+#  endif
+# else /* ! defined YYDEBUG */
+#  define PPDEBUG 1
+# endif /* ! defined YYDEBUG */
+#endif  /* ! defined PPDEBUG */
 
-namespace yy {
-#line 188 "src/parser.hpp"
+namespace pp {
+#line 196 "src/parser.hpp"
 
 
 
@@ -193,7 +201,7 @@ namespace yy {
   class parser
   {
   public:
-#ifndef YYSTYPE
+#ifndef PPSTYPE
   /// A buffer to store and retrieve objects.
   ///
   /// Sort of a variant, but does not keep track of the nature
@@ -429,7 +437,7 @@ namespace yy {
   };
 
 #else
-    typedef YYSTYPE semantic_type;
+    typedef PPSTYPE semantic_type;
 #endif
     /// Symbol locations.
     typedef location location_type;
@@ -457,10 +465,10 @@ namespace yy {
     {
       enum token_kind_type
       {
-        TOK_YYEMPTY = -2,
-    TOK_YYEOF = 0,                 // YYEOF
-    TOK_YYerror = 256,             // error
-    TOK_YYUNDEF = 257,             // "invalid token"
+        TOK_PPEMPTY = -2,
+    TOK_PPEOF = 0,                 // PPEOF
+    TOK_PPerror = 256,             // error
+    TOK_PPUNDEF = 257,             // "invalid token"
     TOK_IDENTIFIER = 258,          // "identifier"
     TOK_NUMBER = 259,              // "number"
     TOK_MOD = 260,                 // "%"
@@ -494,7 +502,7 @@ namespace yy {
       {
         YYNTOKENS = 18, ///< Number of tokens.
         S_YYEMPTY = -2,
-        S_YYEOF = 0,                             // YYEOF
+        S_YYEOF = 0,                             // PPEOF
         S_YYerror = 1,                           // error
         S_YYUNDEF = 2,                           // "invalid token"
         S_IDENTIFIER = 3,                        // "identifier"
@@ -748,13 +756,13 @@ switch (yykind)
       symbol_type (int tok, location_type l)
         : super_type(token_type (tok), std::move (l))
       {
-        YY_ASSERT (tok == token::TOK_YYEOF || tok == token::TOK_YYerror || tok == token::TOK_YYUNDEF || tok == token::TOK_MOD || tok == token::TOK_THEN || tok == token::TOK_ELSE || tok == token::TOK_LT || tok == token::TOK_LE || tok == token::TOK_GT || tok == token::TOK_GE || tok == token::TOK_EQ || tok == token::TOK_NE || tok == token::TOK_AND || tok == token::TOK_OR || tok == token::TOK_LPAREN || tok == token::TOK_RPAREN);
+        YY_ASSERT (tok == token::TOK_PPEOF || tok == token::TOK_PPerror || tok == token::TOK_PPUNDEF || tok == token::TOK_MOD || tok == token::TOK_THEN || tok == token::TOK_ELSE || tok == token::TOK_LT || tok == token::TOK_LE || tok == token::TOK_GT || tok == token::TOK_GE || tok == token::TOK_EQ || tok == token::TOK_NE || tok == token::TOK_AND || tok == token::TOK_OR || tok == token::TOK_LPAREN || tok == token::TOK_RPAREN);
       }
 #else
       symbol_type (int tok, const location_type& l)
         : super_type(token_type (tok), l)
       {
-        YY_ASSERT (tok == token::TOK_YYEOF || tok == token::TOK_YYerror || tok == token::TOK_YYUNDEF || tok == token::TOK_MOD || tok == token::TOK_THEN || tok == token::TOK_ELSE || tok == token::TOK_LT || tok == token::TOK_LE || tok == token::TOK_GT || tok == token::TOK_GE || tok == token::TOK_EQ || tok == token::TOK_NE || tok == token::TOK_AND || tok == token::TOK_OR || tok == token::TOK_LPAREN || tok == token::TOK_RPAREN);
+        YY_ASSERT (tok == token::TOK_PPEOF || tok == token::TOK_PPerror || tok == token::TOK_PPUNDEF || tok == token::TOK_MOD || tok == token::TOK_THEN || tok == token::TOK_ELSE || tok == token::TOK_LT || tok == token::TOK_LE || tok == token::TOK_GT || tok == token::TOK_GE || tok == token::TOK_EQ || tok == token::TOK_NE || tok == token::TOK_AND || tok == token::TOK_OR || tok == token::TOK_LPAREN || tok == token::TOK_RPAREN);
       }
 #endif
 #if 201103L <= YY_CPLUSPLUS
@@ -804,7 +812,7 @@ switch (yykind)
     /// \returns  0 iff parsing succeeded.
     virtual int parse ();
 
-#if YYDEBUG
+#if PPDEBUG
     /// The current debugging stream.
     std::ostream& debug_stream () const YY_ATTRIBUTE_PURE;
     /// Set the current debugging stream.
@@ -834,46 +842,46 @@ switch (yykind)
 #if 201103L <= YY_CPLUSPLUS
       static
       symbol_type
-      make_YYEOF (location_type l)
+      make_PPEOF (location_type l)
       {
-        return symbol_type (token::TOK_YYEOF, std::move (l));
+        return symbol_type (token::TOK_PPEOF, std::move (l));
       }
 #else
       static
       symbol_type
-      make_YYEOF (const location_type& l)
+      make_PPEOF (const location_type& l)
       {
-        return symbol_type (token::TOK_YYEOF, l);
+        return symbol_type (token::TOK_PPEOF, l);
       }
 #endif
 #if 201103L <= YY_CPLUSPLUS
       static
       symbol_type
-      make_YYerror (location_type l)
+      make_PPerror (location_type l)
       {
-        return symbol_type (token::TOK_YYerror, std::move (l));
+        return symbol_type (token::TOK_PPerror, std::move (l));
       }
 #else
       static
       symbol_type
-      make_YYerror (const location_type& l)
+      make_PPerror (const location_type& l)
       {
-        return symbol_type (token::TOK_YYerror, l);
+        return symbol_type (token::TOK_PPerror, l);
       }
 #endif
 #if 201103L <= YY_CPLUSPLUS
       static
       symbol_type
-      make_YYUNDEF (location_type l)
+      make_PPUNDEF (location_type l)
       {
-        return symbol_type (token::TOK_YYUNDEF, std::move (l));
+        return symbol_type (token::TOK_PPUNDEF, std::move (l));
       }
 #else
       static
       symbol_type
-      make_YYUNDEF (const location_type& l)
+      make_PPUNDEF (const location_type& l)
       {
-        return symbol_type (token::TOK_YYUNDEF, l);
+        return symbol_type (token::TOK_PPUNDEF, l);
       }
 #endif
 #if 201103L <= YY_CPLUSPLUS
@@ -1202,7 +1210,7 @@ switch (yykind)
     static const signed char yyr2_[];
 
 
-#if YYDEBUG
+#if PPDEBUG
     // YYRLINE[YYN] -- Source line where rule number YYN was defined.
     static const signed char yyrline_[];
     /// Report on the debug stream that the rule \a r is going to be reduced.
@@ -1621,16 +1629,16 @@ switch (yykind)
     return this->kind ();
   }
 
-} // yy
-#line 1626 "src/parser.hpp"
-
-
-// "%code provides" blocks.
-#line 19 "src/parser.yy"
-
-    #include "driver.hpp"
-
+} // pp
 #line 1634 "src/parser.hpp"
 
 
-#endif // !YY_YY_SRC_PARSER_HPP_INCLUDED
+// "%code provides" blocks.
+#line 20 "src/parser.yy"
+
+    #include "driver.hpp"
+
+#line 1642 "src/parser.hpp"
+
+
+#endif // !YY_PP_SRC_PARSER_HPP_INCLUDED

@@ -1,19 +1,23 @@
 %{ /* -*- C++ -*- */
+    #ifdef __clang__
+    #pragma clang diagnostic ignored "-Wnull-conversion"
+    #endif
     #include <cerrno>
     #include <climits>
     #include <cstdlib>
     #include <cstring> // strerror
     #include <string>
+    #include <sstream>
     #include "driver.hpp"
     #include "parser.hpp"
 %}
 
-%option noyywrap nounput noinput batch debug
+%option noyywrap nounput noinput batch debug prefix="PP"
 
 %{
     // A number symbol corresponding to the value in S.
-    yy::parser::symbol_type
-    make_NUMBER (const std::string &s, const yy::parser::location_type& loc);
+    pp::parser::symbol_type
+    make_NUMBER (const std::string &s, const pp::parser::location_type& loc);
 %}
 
 id      [a-zA-Z][a-zA-Z_0-9]*
@@ -29,7 +33,7 @@ blank   [ \t\r]
 
 %{
     // A handy shortcut to the location held by the driver.
-    yy::location& loc = drv.location;
+    pp::location& loc = drv.location;
     // Code run each time yylex is called.
     loc.step ();
 %}
@@ -41,37 +45,47 @@ blank   [ \t\r]
                 loc.step();
             }
 
-{id}        return yy::parser::make_IDENTIFIER  (yytext, loc);
+{id}        return pp::parser::make_IDENTIFIER  (yytext, loc);
 {int}       return make_NUMBER                  (yytext, loc);
-"%"         return yy::parser::make_MOD         (loc);
-"?"         return yy::parser::make_THEN        (loc);
-":"         return yy::parser::make_ELSE        (loc);
-"<"         return yy::parser::make_LT          (loc);
-"<="        return yy::parser::make_LE          (loc);
-">"         return yy::parser::make_GT          (loc);
-">="        return yy::parser::make_GE          (loc);
-"=="        return yy::parser::make_EQ          (loc);
-"!="        return yy::parser::make_NE          (loc);
-"&&"        return yy::parser::make_AND         (loc);
-"||"        return yy::parser::make_OR          (loc);
-"("         return yy::parser::make_LPAREN      (loc);
-")"         return yy::parser::make_RPAREN      (loc);
-<<EOF>>     return yy::parser::make_YYEOF       (loc);
+"%"         return pp::parser::make_MOD         (loc);
+"?"         return pp::parser::make_THEN        (loc);
+":"         return pp::parser::make_ELSE        (loc);
+"<"         return pp::parser::make_LT          (loc);
+"<="        return pp::parser::make_LE          (loc);
+">"         return pp::parser::make_GT          (loc);
+">="        return pp::parser::make_GE          (loc);
+"=="        return pp::parser::make_EQ          (loc);
+"!="        return pp::parser::make_NE          (loc);
+"&&"        return pp::parser::make_AND         (loc);
+"||"        return pp::parser::make_OR          (loc);
+"("         return pp::parser::make_LPAREN      (loc);
+")"         return pp::parser::make_RPAREN      (loc);
+<<EOF>>     return pp::parser::make_PPEOF       (loc);
 .           {
-                throw yy::parser::syntax_error
-                    (loc, "invalid character: " + std::string(yytext));
+                std::stringstream ss;
+                ss << "plurals-parser: syntax error["
+                   << loc
+                   << "] encountered invalid character \""
+                   << yytext
+                   << "\" while parsing \""
+                   << drv.file_contents
+                   << "\"";
+                drv.error =  ss.str();
+
+                throw pp::parser::syntax_error
+                    (loc, ss.str());
             }
 
 %%
 
-yy::parser::symbol_type
-make_NUMBER (const std::string &s, const yy::parser::location_type& loc) {
+pp::parser::symbol_type
+make_NUMBER (const std::string &s, const pp::parser::location_type& loc) {
     errno = 0;
     long n = strtol(s.c_str(), NULL, 10);
     if (!(INT_MIN <= n && n <= INT_MAX && errno != ERANGE)) {
-        throw yy::parser::syntax_error(loc, "integer is out of range: " + s);
+        throw pp::parser::syntax_error(loc, "integer is out of range: " + s);
     }
-    return yy::parser::make_NUMBER((uint) n, loc);
+    return pp::parser::make_NUMBER((uint) n, loc);
 }
 
 void driver::scan_begin() {

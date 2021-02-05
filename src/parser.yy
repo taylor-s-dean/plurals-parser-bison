@@ -1,7 +1,8 @@
 %skeleton "lalr1.cc" // -*- C++ -*-
-%require "3.0.2"
+%require "3.2"
 %defines
 
+%define api.prefix {pp}
 %define api.token.constructor
 %define api.token.prefix {TOK_}
 %define api.value.type variant
@@ -38,7 +39,7 @@
     OR      "||"
     LPAREN  "("
     RPAREN  ")"
-    YYEOF    0
+    PPEOF    0
 ;
 
 %nterm <uint>
@@ -103,6 +104,6 @@ expression:
 ;
 %%
 
-void yy::parser::error (const location_type& l, const std::string& m) {
+void pp::parser::error (const location_type& l, const std::string& m) {
     std::cerr << l << ": " << m << '\n';
 }

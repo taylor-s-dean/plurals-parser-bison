@@ -35,6 +35,8 @@
 // private implementation details that can be changed or removed.
 
 
+// Take the name prefix into account.
+#define yylex   pplex
 
 
 
@@ -87,7 +89,7 @@
 
 
 // Enable debugging if requested.
-#if YYDEBUG
+#if PPDEBUG
 
 // A pseudo ostream that takes yydebug_ into account.
 # define YYCDEBUG if (yydebug_) (*yycdebug_)
@@ -114,14 +116,14 @@
       yy_stack_print_ ();                \
   } while (false)
 
-#else // !YYDEBUG
+#else // !PPDEBUG
 
 # define YYCDEBUG if (false) std::cerr
 # define YY_SYMBOL_PRINT(Title, Symbol)  YYUSE (Symbol)
 # define YY_REDUCE_PRINT(Rule)           static_cast<void> (0)
 # define YY_STACK_PRINT()                static_cast<void> (0)
 
-#endif // !YYDEBUG
+#endif // !PPDEBUG
 
 #define yyerrok         (yyerrstatus_ = 0)
 #define yyclearin       (yyla.clear ())
@@ -131,12 +133,12 @@
 #define YYERROR         goto yyerrorlab
 #define YYRECOVERING()  (!!yyerrstatus_)
 
-namespace yy {
-#line 136 "src/parser.cpp"
+namespace pp {
+#line 138 "src/parser.cpp"
 
   /// Build a parser object.
   parser::parser (driver& drv_yyarg)
-#if YYDEBUG
+#if PPDEBUG
     : yydebug_ (false),
       yycdebug_ (&std::cerr),
 #else
@@ -323,7 +325,7 @@ namespace yy {
       YY_SYMBOL_PRINT (yymsg, yysym);
   }
 
-#if YYDEBUG
+#if PPDEBUG
   template <typename Base>
   void
   parser::yy_print_ (std::ostream& yyo, const basic_symbol<Base>& yysym) const
@@ -341,57 +343,57 @@ namespace yy {
         switch (yykind)
     {
       case symbol_kind::S_IDENTIFIER: // "identifier"
-#line 54 "src/parser.yy"
+#line 55 "src/parser.yy"
                  { yyo << yysym.value.template as < std::string > (); }
-#line 347 "src/parser.cpp"
+#line 349 "src/parser.cpp"
         break;
 
       case symbol_kind::S_NUMBER: // "number"
-#line 54 "src/parser.yy"
+#line 55 "src/parser.yy"
                  { yyo << yysym.value.template as < uint > (); }
-#line 353 "src/parser.cpp"
+#line 355 "src/parser.cpp"
         break;
 
       case symbol_kind::S_if_statement: // if_statement
-#line 54 "src/parser.yy"
+#line 55 "src/parser.yy"
                  { yyo << yysym.value.template as < uint > (); }
-#line 359 "src/parser.cpp"
+#line 361 "src/parser.cpp"
         break;
 
       case symbol_kind::S_multiplicative: // multiplicative
-#line 54 "src/parser.yy"
+#line 55 "src/parser.yy"
                  { yyo << yysym.value.template as < uint > (); }
-#line 365 "src/parser.cpp"
+#line 367 "src/parser.cpp"
         break;
 
       case symbol_kind::S_associative: // associative
-#line 54 "src/parser.yy"
+#line 55 "src/parser.yy"
                  { yyo << yysym.value.template as < uint > (); }
-#line 371 "src/parser.cpp"
+#line 373 "src/parser.cpp"
         break;
 
       case symbol_kind::S_relational: // relational
-#line 54 "src/parser.yy"
+#line 55 "src/parser.yy"
                  { yyo << yysym.value.template as < uint > (); }
-#line 377 "src/parser.cpp"
+#line 379 "src/parser.cpp"
         break;
 
       case symbol_kind::S_equality: // equality
-#line 54 "src/parser.yy"
+#line 55 "src/parser.yy"
                  { yyo << yysym.value.template as < uint > (); }
-#line 383 "src/parser.cpp"
+#line 385 "src/parser.cpp"
         break;
 
       case symbol_kind::S_logical: // logical
-#line 54 "src/parser.yy"
+#line 55 "src/parser.yy"
                  { yyo << yysym.value.template as < uint > (); }
-#line 389 "src/parser.cpp"
+#line 391 "src/parser.cpp"
         break;
 
       case symbol_kind::S_expression: // expression
-#line 54 "src/parser.yy"
+#line 55 "src/parser.yy"
                  { yyo << yysym.value.template as < uint > (); }
-#line 395 "src/parser.cpp"
+#line 397 "src/parser.cpp"
         break;
 
       default:
@@ -427,7 +429,7 @@ namespace yy {
     yystack_.pop (n);
   }
 
-#if YYDEBUG
+#if PPDEBUG
   std::ostream&
   parser::debug_stream () const
   {
@@ -452,7 +454,7 @@ namespace yy {
   {
     yydebug_ = l;
   }
-#endif // YYDEBUG
+#endif // PPDEBUG
 
   parser::state_type
   parser::yy_lr_goto_state_ (state_type yystate, int yysym)
@@ -657,127 +659,127 @@ namespace yy {
           switch (yyn)
             {
   case 2: // unit: if_statement
-#line 67 "src/parser.yy"
+#line 68 "src/parser.yy"
                     { drv.result = yystack_[0].value.as < uint > (); }
-#line 663 "src/parser.cpp"
+#line 665 "src/parser.cpp"
     break;
 
   case 3: // if_statement: expression
-#line 70 "src/parser.yy"
+#line 71 "src/parser.yy"
   { yylhs.value.as < uint > () = yystack_[0].value.as < uint > (); }
-#line 669 "src/parser.cpp"
+#line 671 "src/parser.cpp"
     break;
 
   case 4: // if_statement: expression "?" if_statement ":" if_statement
-#line 71 "src/parser.yy"
+#line 72 "src/parser.yy"
                                                { yylhs.value.as < uint > () = yystack_[4].value.as < uint > () ? yystack_[2].value.as < uint > () : yystack_[0].value.as < uint > (); }
-#line 675 "src/parser.cpp"
+#line 677 "src/parser.cpp"
     break;
 
   case 5: // multiplicative: expression "%" expression
-#line 74 "src/parser.yy"
+#line 75 "src/parser.yy"
                                             { yylhs.value.as < uint > () = yystack_[2].value.as < uint > () % yystack_[0].value.as < uint > (); }
-#line 681 "src/parser.cpp"
+#line 683 "src/parser.cpp"
     break;
 
   case 6: // associative: "(" if_statement ")"
-#line 76 "src/parser.yy"
+#line 77 "src/parser.yy"
                                     { yylhs.value.as < uint > () = yystack_[1].value.as < uint > (); }
-#line 687 "src/parser.cpp"
+#line 689 "src/parser.cpp"
     break;
 
   case 7: // relational: expression "<" expression
-#line 79 "src/parser.yy"
+#line 80 "src/parser.yy"
                              { yylhs.value.as < uint > () = yystack_[2].value.as < uint > () < yystack_[0].value.as < uint > (); }
-#line 693 "src/parser.cpp"
+#line 695 "src/parser.cpp"
     break;
 
   case 8: // relational: expression "<=" expression
-#line 80 "src/parser.yy"
+#line 81 "src/parser.yy"
                              { yylhs.value.as < uint > () = yystack_[2].value.as < uint > () <= yystack_[0].value.as < uint > (); }
-#line 699 "src/parser.cpp"
+#line 701 "src/parser.cpp"
     break;
 
   case 9: // relational: expression ">" expression
-#line 81 "src/parser.yy"
+#line 82 "src/parser.yy"
                              { yylhs.value.as < uint > () = yystack_[2].value.as < uint > () > yystack_[0].value.as < uint > (); }
-#line 705 "src/parser.cpp"
+#line 707 "src/parser.cpp"
     break;
 
   case 10: // relational: expression ">=" expression
-#line 82 "src/parser.yy"
+#line 83 "src/parser.yy"
                              { yylhs.value.as < uint > () = yystack_[2].value.as < uint > () >= yystack_[0].value.as < uint > (); }
-#line 711 "src/parser.cpp"
+#line 713 "src/parser.cpp"
     break;
 
   case 11: // equality: expression "==" expression
-#line 86 "src/parser.yy"
+#line 87 "src/parser.yy"
                              { yylhs.value.as < uint > () = yystack_[2].value.as < uint > () == yystack_[0].value.as < uint > (); }
-#line 717 "src/parser.cpp"
+#line 719 "src/parser.cpp"
     break;
 
   case 12: // equality: expression "!=" expression
-#line 87 "src/parser.yy"
+#line 88 "src/parser.yy"
                              { yylhs.value.as < uint > () = yystack_[2].value.as < uint > () != yystack_[0].value.as < uint > (); }
-#line 723 "src/parser.cpp"
+#line 725 "src/parser.cpp"
     break;
 
   case 13: // logical: expression "&&" expression
-#line 91 "src/parser.yy"
+#line 92 "src/parser.yy"
                              { yylhs.value.as < uint > () = yystack_[2].value.as < uint > () && yystack_[0].value.as < uint > (); }
-#line 729 "src/parser.cpp"
+#line 731 "src/parser.cpp"
     break;
 
   case 14: // logical: expression "||" expression
-#line 92 "src/parser.yy"
+#line 93 "src/parser.yy"
                              { yylhs.value.as < uint > () = yystack_[2].value.as < uint > () || yystack_[0].value.as < uint > (); }
-#line 735 "src/parser.cpp"
+#line 737 "src/parser.cpp"
     break;
 
   case 15: // expression: "number"
-#line 96 "src/parser.yy"
+#line 97 "src/parser.yy"
   { yylhs.value.as < uint > () = yystack_[0].value.as < uint > (); }
-#line 741 "src/parser.cpp"
+#line 743 "src/parser.cpp"
     break;
 
   case 16: // expression: "identifier"
-#line 97 "src/parser.yy"
+#line 98 "src/parser.yy"
                 { yylhs.value.as < uint > () = drv.variables[yystack_[0].value.as < std::string > ()]; }
-#line 747 "src/parser.cpp"
+#line 749 "src/parser.cpp"
     break;
 
   case 17: // expression: associative
-#line 98 "src/parser.yy"
+#line 99 "src/parser.yy"
   { yylhs.value.as < uint > () = yystack_[0].value.as < uint > (); }
-#line 753 "src/parser.cpp"
+#line 755 "src/parser.cpp"
     break;
 
   case 18: // expression: multiplicative
-#line 99 "src/parser.yy"
+#line 100 "src/parser.yy"
   { yylhs.value.as < uint > () = yystack_[0].value.as < uint > (); }
-#line 759 "src/parser.cpp"
+#line 761 "src/parser.cpp"
     break;
 
   case 19: // expression: relational
-#line 100 "src/parser.yy"
+#line 101 "src/parser.yy"
   { yylhs.value.as < uint > () = yystack_[0].value.as < uint > (); }
-#line 765 "src/parser.cpp"
+#line 767 "src/parser.cpp"
     break;
 
   case 20: // expression: equality
-#line 101 "src/parser.yy"
+#line 102 "src/parser.yy"
   { yylhs.value.as < uint > () = yystack_[0].value.as < uint > (); }
-#line 771 "src/parser.cpp"
+#line 773 "src/parser.cpp"
     break;
 
   case 21: // expression: logical
-#line 102 "src/parser.yy"
+#line 103 "src/parser.yy"
   { yylhs.value.as < uint > () = yystack_[0].value.as < uint > (); }
-#line 777 "src/parser.cpp"
+#line 779 "src/parser.cpp"
     break;
 
 
-#line 781 "src/parser.cpp"
+#line 783 "src/parser.cpp"
 
             default:
               break;
@@ -1208,13 +1210,13 @@ namespace yy {
   };
 
 
-#if YYDEBUG || 1
+#if PPDEBUG || 1
   // YYTNAME[SYMBOL-NUM] -- String name of the symbol SYMBOL-NUM.
   // First, the terminals, then, starting at \a YYNTOKENS, nonterminals.
   const char*
   const parser::yytname_[] =
   {
-  "YYEOF", "error", "\"invalid token\"", "\"identifier\"", "\"number\"",
+  "PPEOF", "error", "\"invalid token\"", "\"identifier\"", "\"number\"",
   "\"%\"", "\"?\"", "\":\"", "\"<\"", "\"<=\"", "\">\"", "\">=\"",
   "\"==\"", "\"!=\"", "\"&&\"", "\"||\"", "\"(\"", "\")\"", "$accept",
   "unit", "if_statement", "multiplicative", "associative", "relational",
@@ -1223,13 +1225,13 @@ namespace yy {
 #endif
 
 
-#if YYDEBUG
+#if PPDEBUG
   const signed char
   parser::yyrline_[] =
   {
-       0,    67,    67,    70,    71,    74,    76,    79,    80,    81,
-      82,    86,    87,    91,    92,    96,    97,    98,    99,   100,
-     101,   102
+       0,    68,    68,    71,    72,    75,    77,    80,    81,    82,
+      83,    87,    88,    92,    93,    97,    98,    99,   100,   101,
+     102,   103
   };
 
   void
@@ -1257,15 +1259,15 @@ namespace yy {
       YY_SYMBOL_PRINT ("   $" << yyi + 1 << " =",
                        yystack_[(yynrhs) - (yyi + 1)]);
   }
-#endif // YYDEBUG
+#endif // PPDEBUG
 
 
-} // yy
-#line 1265 "src/parser.cpp"
+} // pp
+#line 1267 "src/parser.cpp"
 
-#line 104 "src/parser.yy"
+#line 105 "src/parser.yy"
 
 
-void yy::parser::error (const location_type& l, const std::string& m) {
+void pp::parser::error (const location_type& l, const std::string& m) {
     std::cerr << l << ": " << m << '\n';
 }

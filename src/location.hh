@@ -32,11 +32,11 @@
 
 /**
  ** \file src/location.hh
- ** Define the yy::location class.
+ ** Define the pp::location class.
  */
 
-#ifndef YY_YY_SRC_LOCATION_HH_INCLUDED
-# define YY_YY_SRC_LOCATION_HH_INCLUDED
+#ifndef YY_PP_SRC_LOCATION_HH_INCLUDED
+# define YY_PP_SRC_LOCATION_HH_INCLUDED
 
 # include <iostream>
 # include <string>
@@ -53,7 +53,7 @@
 #  endif
 # endif
 
-namespace yy {
+namespace pp {
 #line 58 "src/location.hh"
 
   /// A point in a source file.
@@ -298,7 +298,7 @@ namespace yy {
     return ostr;
   }
 
-} // yy
+} // pp
 #line 303 "src/location.hh"
 
-#endif // !YY_YY_SRC_LOCATION_HH_INCLUDED
+#endif // !YY_PP_SRC_LOCATION_HH_INCLUDED

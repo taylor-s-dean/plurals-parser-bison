@@ -9,6 +9,30 @@
 /* %not-for-header */
 /* %if-c-only */
 /* %if-not-reentrant */
+#define yy_create_buffer PP_create_buffer
+#define yy_delete_buffer PP_delete_buffer
+#define yy_scan_buffer PP_scan_buffer
+#define yy_scan_string PP_scan_string
+#define yy_scan_bytes PP_scan_bytes
+#define yy_init_buffer PP_init_buffer
+#define yy_flush_buffer PP_flush_buffer
+#define yy_load_buffer_state PP_load_buffer_state
+#define yy_switch_to_buffer PP_switch_to_buffer
+#define yypush_buffer_state PPpush_buffer_state
+#define yypop_buffer_state PPpop_buffer_state
+#define yyensure_buffer_stack PPensure_buffer_stack
+#define yy_flex_debug PP_flex_debug
+#define yyin PPin
+#define yyleng PPleng
+#define yylex PPlex
+#define yylineno PPlineno
+#define yyout PPout
+#define yyrestart PPrestart
+#define yytext PPtext
+#define yywrap PPwrap
+#define yyalloc PPalloc
+#define yyrealloc PPrealloc
+#define yyfree PPfree
 
 /* %endif */
 /* %endif */
@@ -26,10 +50,243 @@
 /* %endif */
 
 /* %if-c-only */
+#ifdef yy_create_buffer
+#define PP_create_buffer_ALREADY_DEFINED
+#else
+#define yy_create_buffer PP_create_buffer
+#endif
+
+#ifdef yy_delete_buffer
+#define PP_delete_buffer_ALREADY_DEFINED
+#else
+#define yy_delete_buffer PP_delete_buffer
+#endif
+
+#ifdef yy_scan_buffer
+#define PP_scan_buffer_ALREADY_DEFINED
+#else
+#define yy_scan_buffer PP_scan_buffer
+#endif
+
+#ifdef yy_scan_string
+#define PP_scan_string_ALREADY_DEFINED
+#else
+#define yy_scan_string PP_scan_string
+#endif
+
+#ifdef yy_scan_bytes
+#define PP_scan_bytes_ALREADY_DEFINED
+#else
+#define yy_scan_bytes PP_scan_bytes
+#endif
+
+#ifdef yy_init_buffer
+#define PP_init_buffer_ALREADY_DEFINED
+#else
+#define yy_init_buffer PP_init_buffer
+#endif
+
+#ifdef yy_flush_buffer
+#define PP_flush_buffer_ALREADY_DEFINED
+#else
+#define yy_flush_buffer PP_flush_buffer
+#endif
+
+#ifdef yy_load_buffer_state
+#define PP_load_buffer_state_ALREADY_DEFINED
+#else
+#define yy_load_buffer_state PP_load_buffer_state
+#endif
+
+#ifdef yy_switch_to_buffer
+#define PP_switch_to_buffer_ALREADY_DEFINED
+#else
+#define yy_switch_to_buffer PP_switch_to_buffer
+#endif
+
+#ifdef yypush_buffer_state
+#define PPpush_buffer_state_ALREADY_DEFINED
+#else
+#define yypush_buffer_state PPpush_buffer_state
+#endif
+
+#ifdef yypop_buffer_state
+#define PPpop_buffer_state_ALREADY_DEFINED
+#else
+#define yypop_buffer_state PPpop_buffer_state
+#endif
+
+#ifdef yyensure_buffer_stack
+#define PPensure_buffer_stack_ALREADY_DEFINED
+#else
+#define yyensure_buffer_stack PPensure_buffer_stack
+#endif
+
+#ifdef yylex
+#define PPlex_ALREADY_DEFINED
+#else
+#define yylex PPlex
+#endif
+
+#ifdef yyrestart
+#define PPrestart_ALREADY_DEFINED
+#else
+#define yyrestart PPrestart
+#endif
+
+#ifdef yylex_init
+#define PPlex_init_ALREADY_DEFINED
+#else
+#define yylex_init PPlex_init
+#endif
+
+#ifdef yylex_init_extra
+#define PPlex_init_extra_ALREADY_DEFINED
+#else
+#define yylex_init_extra PPlex_init_extra
+#endif
+
+#ifdef yylex_destroy
+#define PPlex_destroy_ALREADY_DEFINED
+#else
+#define yylex_destroy PPlex_destroy
+#endif
+
+#ifdef yyget_debug
+#define PPget_debug_ALREADY_DEFINED
+#else
+#define yyget_debug PPget_debug
+#endif
+
+#ifdef yyset_debug
+#define PPset_debug_ALREADY_DEFINED
+#else
+#define yyset_debug PPset_debug
+#endif
+
+#ifdef yyget_extra
+#define PPget_extra_ALREADY_DEFINED
+#else
+#define yyget_extra PPget_extra
+#endif
+
+#ifdef yyset_extra
+#define PPset_extra_ALREADY_DEFINED
+#else
+#define yyset_extra PPset_extra
+#endif
+
+#ifdef yyget_in
+#define PPget_in_ALREADY_DEFINED
+#else
+#define yyget_in PPget_in
+#endif
+
+#ifdef yyset_in
+#define PPset_in_ALREADY_DEFINED
+#else
+#define yyset_in PPset_in
+#endif
+
+#ifdef yyget_out
+#define PPget_out_ALREADY_DEFINED
+#else
+#define yyget_out PPget_out
+#endif
+
+#ifdef yyset_out
+#define PPset_out_ALREADY_DEFINED
+#else
+#define yyset_out PPset_out
+#endif
+
+#ifdef yyget_leng
+#define PPget_leng_ALREADY_DEFINED
+#else
+#define yyget_leng PPget_leng
+#endif
+
+#ifdef yyget_text
+#define PPget_text_ALREADY_DEFINED
+#else
+#define yyget_text PPget_text
+#endif
+
+#ifdef yyget_lineno
+#define PPget_lineno_ALREADY_DEFINED
+#else
+#define yyget_lineno PPget_lineno
+#endif
+
+#ifdef yyset_lineno
+#define PPset_lineno_ALREADY_DEFINED
+#else
+#define yyset_lineno PPset_lineno
+#endif
+
+#ifdef yywrap
+#define PPwrap_ALREADY_DEFINED
+#else
+#define yywrap PPwrap
+#endif
 
 /* %endif */
 
+#ifdef yyalloc
+#define PPalloc_ALREADY_DEFINED
+#else
+#define yyalloc PPalloc
+#endif
+
+#ifdef yyrealloc
+#define PPrealloc_ALREADY_DEFINED
+#else
+#define yyrealloc PPrealloc
+#endif
+
+#ifdef yyfree
+#define PPfree_ALREADY_DEFINED
+#else
+#define yyfree PPfree
+#endif
+
 /* %if-c-only */
+
+#ifdef yytext
+#define PPtext_ALREADY_DEFINED
+#else
+#define yytext PPtext
+#endif
+
+#ifdef yyleng
+#define PPleng_ALREADY_DEFINED
+#else
+#define yyleng PPleng
+#endif
+
+#ifdef yyin
+#define PPin_ALREADY_DEFINED
+#else
+#define yyin PPin
+#endif
+
+#ifdef yyout
+#define PPout_ALREADY_DEFINED
+#else
+#define yyout PPout
+#endif
+
+#ifdef yy_flex_debug
+#define PP_flex_debug_ALREADY_DEFINED
+#else
+#define yy_flex_debug PP_flex_debug
+#endif
+
+#ifdef yylineno
+#define PPlineno_ALREADY_DEFINED
+#else
+#define yylineno PPlineno
+#endif
 
 /* %endif */
 
@@ -392,7 +649,7 @@ void yyfree ( void *  );
 /* %% [1.0] yytext/yyin/yyout/yy_state_type/yylineno etc. def's & init go here */
 /* Begin user sect3 */
 
-#define yywrap() (/*CONSTCOND*/1)
+#define PPwrap() (/*CONSTCOND*/1)
 #define YY_SKIP_YYWRAP
 
 #define FLEX_DEBUG
@@ -533,8 +790,8 @@ int yy_flex_debug = 1;
 
 static const flex_int16_t yy_rule_linenum[20] =
     {   0,
-       38,   39,   40,   45,   46,   47,   48,   49,   50,   51,
-       52,   53,   54,   55,   56,   57,   58,   59,   61
+       42,   43,   44,   49,   50,   51,   52,   53,   54,   55,
+       56,   57,   58,   59,   60,   61,   62,   63,   65
     } ;
 
 /* The intent behind this definition is that it'll catch
@@ -547,25 +804,29 @@ static const flex_int16_t yy_rule_linenum[20] =
 char *yytext;
 #line 1 "src/scanner.ll"
 #line 2 "src/scanner.ll"
+    #ifdef __clang__
+    #pragma clang diagnostic ignored "-Wnull-conversion"
+    #endif
     #include <cerrno>
     #include <climits>
     #include <cstdlib>
     #include <cstring> // strerror
     #include <string>
+    #include <sstream>
     #include "driver.hpp"
     #include "parser.hpp"
-#line 557 "src/scanner.cpp"
+#line 818 "src/scanner.cpp"
 #define YY_NO_INPUT 1
-#line 14 "src/scanner.ll"
+#line 18 "src/scanner.ll"
     // A number symbol corresponding to the value in S.
-    yy::parser::symbol_type
-    make_NUMBER (const std::string &s, const yy::parser::location_type& loc);
-#line 563 "src/scanner.cpp"
-#line 24 "src/scanner.ll"
+    pp::parser::symbol_type
+    make_NUMBER (const std::string &s, const pp::parser::location_type& loc);
+#line 824 "src/scanner.cpp"
+#line 28 "src/scanner.ll"
     // Code run each time a pattern is matched.
     # define YY_USER_ACTION  loc.columns (yyleng);
-#line 567 "src/scanner.cpp"
-#line 568 "src/scanner.cpp"
+#line 828 "src/scanner.cpp"
+#line 829 "src/scanner.cpp"
 
 #define INITIAL 0
 
@@ -843,18 +1104,18 @@ YY_DECL
 
 	{
 /* %% [7.0] user's declarations go here */
-#line 28 "src/scanner.ll"
-
-
-
 #line 32 "src/scanner.ll"
+
+
+
+#line 36 "src/scanner.ll"
     // A handy shortcut to the location held by the driver.
-    yy::location& loc = drv.location;
+    pp::location& loc = drv.location;
     // Code run each time yylex is called.
     loc.step ();
 
 
-#line 857 "src/scanner.cpp"
+#line 1118 "src/scanner.cpp"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -932,18 +1193,18 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 38 "src/scanner.ll"
+#line 42 "src/scanner.ll"
 loc.step();
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 39 "src/scanner.ll"
+#line 43 "src/scanner.ll"
 loc.step();
 	YY_BREAK
 case 3:
 /* rule 3 can match eol */
 YY_RULE_SETUP
-#line 40 "src/scanner.ll"
+#line 44 "src/scanner.ll"
 {
                 loc.lines(yyleng);
                 loc.step();
@@ -951,97 +1212,107 @@ YY_RULE_SETUP
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 45 "src/scanner.ll"
-return yy::parser::make_IDENTIFIER  (yytext, loc);
+#line 49 "src/scanner.ll"
+return pp::parser::make_IDENTIFIER  (yytext, loc);
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 46 "src/scanner.ll"
+#line 50 "src/scanner.ll"
 return make_NUMBER                  (yytext, loc);
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 47 "src/scanner.ll"
-return yy::parser::make_MOD         (loc);
+#line 51 "src/scanner.ll"
+return pp::parser::make_MOD         (loc);
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 48 "src/scanner.ll"
-return yy::parser::make_THEN        (loc);
+#line 52 "src/scanner.ll"
+return pp::parser::make_THEN        (loc);
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 49 "src/scanner.ll"
-return yy::parser::make_ELSE        (loc);
+#line 53 "src/scanner.ll"
+return pp::parser::make_ELSE        (loc);
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 50 "src/scanner.ll"
-return yy::parser::make_LT          (loc);
+#line 54 "src/scanner.ll"
+return pp::parser::make_LT          (loc);
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 51 "src/scanner.ll"
-return yy::parser::make_LE          (loc);
+#line 55 "src/scanner.ll"
+return pp::parser::make_LE          (loc);
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 52 "src/scanner.ll"
-return yy::parser::make_GT          (loc);
+#line 56 "src/scanner.ll"
+return pp::parser::make_GT          (loc);
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 53 "src/scanner.ll"
-return yy::parser::make_GE          (loc);
+#line 57 "src/scanner.ll"
+return pp::parser::make_GE          (loc);
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 54 "src/scanner.ll"
-return yy::parser::make_EQ          (loc);
+#line 58 "src/scanner.ll"
+return pp::parser::make_EQ          (loc);
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 55 "src/scanner.ll"
-return yy::parser::make_NE          (loc);
+#line 59 "src/scanner.ll"
+return pp::parser::make_NE          (loc);
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 56 "src/scanner.ll"
-return yy::parser::make_AND         (loc);
+#line 60 "src/scanner.ll"
+return pp::parser::make_AND         (loc);
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 57 "src/scanner.ll"
-return yy::parser::make_OR          (loc);
+#line 61 "src/scanner.ll"
+return pp::parser::make_OR          (loc);
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 58 "src/scanner.ll"
-return yy::parser::make_LPAREN      (loc);
+#line 62 "src/scanner.ll"
+return pp::parser::make_LPAREN      (loc);
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 59 "src/scanner.ll"
-return yy::parser::make_RPAREN      (loc);
+#line 63 "src/scanner.ll"
+return pp::parser::make_RPAREN      (loc);
 	YY_BREAK
 case YY_STATE_EOF(INITIAL):
-#line 60 "src/scanner.ll"
-return yy::parser::make_YYEOF       (loc);
+#line 64 "src/scanner.ll"
+return pp::parser::make_PPEOF       (loc);
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 61 "src/scanner.ll"
+#line 65 "src/scanner.ll"
 {
-                throw yy::parser::syntax_error
-                    (loc, "invalid character: " + std::string(yytext));
+                std::stringstream ss;
+                ss << "plurals-parser: syntax error["
+                   << loc
+                   << "] encountered invalid character \""
+                   << yytext
+                   << "\" while parsing \""
+                   << drv.file_contents
+                   << "\"";
+                drv.error =  ss.str();
+
+                throw pp::parser::syntax_error
+                    (loc, ss.str());
             }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 66 "src/scanner.ll"
+#line 80 "src/scanner.ll"
 ECHO;
 	YY_BREAK
-#line 1044 "src/scanner.cpp"
+#line 1315 "src/scanner.cpp"
 
 	case YY_END_OF_BUFFER:
 		{
@@ -2146,17 +2417,17 @@ void yyfree (void * ptr )
 
 /* %ok-for-header */
 
-#line 66 "src/scanner.ll"
+#line 80 "src/scanner.ll"
 
 
-yy::parser::symbol_type
-make_NUMBER (const std::string &s, const yy::parser::location_type& loc) {
+pp::parser::symbol_type
+make_NUMBER (const std::string &s, const pp::parser::location_type& loc) {
     errno = 0;
     long n = strtol(s.c_str(), NULL, 10);
     if (!(INT_MIN <= n && n <= INT_MAX && errno != ERANGE)) {
-        throw yy::parser::syntax_error(loc, "integer is out of range: " + s);
+        throw pp::parser::syntax_error(loc, "integer is out of range: " + s);
     }
-    return yy::parser::make_NUMBER((uint) n, loc);
+    return pp::parser::make_NUMBER((uint) n, loc);
 }
 
 void driver::scan_begin() {
