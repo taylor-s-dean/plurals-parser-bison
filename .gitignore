@@ -1,9 +1,3 @@
 /core
 /obj
 /plurals-parser
-/src/parser.hpp
-/src/parser.cpp
-/src/scanner.cpp
-/src/location.hh
-/src/position.hh
-/src/stack.hh

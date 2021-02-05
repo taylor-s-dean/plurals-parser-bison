@@ -38,13 +38,10 @@ all: pre-build main-build
 
 main-build: plurals-parser
 
-plurals-parser: $(ODIR)/plurals-parser.o $(ODIR)/scanner.o $(ODIR)/parser.o $(ODIR)/driver.o
+plurals-parser: $(ODIR)/plurals-parser.o $(ODIR)/scanner.o $(ODIR)/parser.o
 	$(CXX) -o $@ $^ $(CFLAGS)
 
 $(ODIR)/plurals-parser.o: $(SDIR)/plurals-parser.cpp $(SDIR)/parser.hpp
-	$(CXX) -c -o $@ $< $(CFLAGS)
-
-$(ODIR)/driver.o: $(SDIR)/driver.cpp $(SDIR)/driver.hpp $(SDIR)/parser.hpp
 	$(CXX) -c -o $@ $< $(CFLAGS)
 
 $(ODIR)/parser.o: $(SDIR)/parser.cpp $(SDIR)/parser.hpp
