@@ -820,7 +820,7 @@ char *yytext;
 #line 18 "src/scanner.ll"
     // A number symbol corresponding to the value in S.
     pp::parser::symbol_type
-    make_NUMBER (const std::string &s, const pp::parser::location_type& loc);
+    make_NUMBER(const std::string &s, const pp::parser::location_type& loc, driver& drv);
 #line 824 "src/scanner.cpp"
 #line 28 "src/scanner.ll"
     // Code run each time a pattern is matched.
@@ -1218,7 +1218,7 @@ return pp::parser::make_IDENTIFIER  (yytext, loc);
 case 5:
 YY_RULE_SETUP
 #line 50 "src/scanner.ll"
-return make_NUMBER                  (yytext, loc);
+return make_NUMBER                  (yytext, loc, drv);
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
@@ -1303,16 +1303,15 @@ YY_RULE_SETUP
                    << "\"";
                 drv.error =  ss.str();
 
-                throw pp::parser::syntax_error
-                    (loc, ss.str());
+                return pp::parser::make_PPerror(loc);
             }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 80 "src/scanner.ll"
+#line 79 "src/scanner.ll"
 ECHO;
 	YY_BREAK
-#line 1315 "src/scanner.cpp"
+#line 1314 "src/scanner.cpp"
 
 	case YY_END_OF_BUFFER:
 		{
@@ -2417,15 +2416,25 @@ void yyfree (void * ptr )
 
 /* %ok-for-header */
 
-#line 80 "src/scanner.ll"
+#line 79 "src/scanner.ll"
 
 
 pp::parser::symbol_type
-make_NUMBER (const std::string &s, const pp::parser::location_type& loc) {
+make_NUMBER (const std::string &s, const pp::parser::location_type& loc, driver& drv) {
     errno = 0;
     long n = strtol(s.c_str(), NULL, 10);
     if (!(INT_MIN <= n && n <= INT_MAX && errno != ERANGE)) {
-        throw pp::parser::syntax_error(loc, "integer is out of range: " + s);
+        std::stringstream ss;
+        ss << "plurals-parser: error["
+           << loc
+           << "] integer is out of range ("
+           << INT_MIN
+           << ", "
+           << INT_MAX
+           << "): "
+           << s;
+        drv.error = ss.str();
+        return pp::parser::make_PPerror(loc);
     }
     return pp::parser::make_NUMBER((uint) n, loc);
 }

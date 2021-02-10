@@ -45,10 +45,10 @@ $(ODIR)/plurals-parser.o: $(SDIR)/plurals-parser.cpp $(SDIR)/parser.hpp
 	$(CXX) -c -o $@ $< $(CFLAGS)
 
 $(ODIR)/parser.o: $(SDIR)/parser.cpp $(SDIR)/parser.hpp
-	$(CXX) -c -o $@ $< $(CFLAGS)
+	$(CXX) -c -o $@ $< $(CFLAGS) -fno-exceptions
 
 $(ODIR)/scanner.o: $(SDIR)/scanner.cpp $(SDIR)/parser.hpp
-	$(CXX) -c -o $@ $< $(CFLAGS)
+	$(CXX) -c -o $@ $< $(CFLAGS) -fno-exceptions
 
 $(SDIR)/scanner.cpp: $(SDIR)/scanner.ll
 	$(LEX) -o $(SDIR)/scanner.cpp $<

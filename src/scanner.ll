@@ -17,7 +17,7 @@
 %{
     // A number symbol corresponding to the value in S.
     pp::parser::symbol_type
-    make_NUMBER (const std::string &s, const pp::parser::location_type& loc);
+    make_NUMBER(const std::string &s, const pp::parser::location_type& loc, driver& drv);
 %}
 
 id      [a-zA-Z][a-zA-Z_0-9]*
@@ -46,7 +46,7 @@ blank   [ \t\r]
             }
 
 {id}        return pp::parser::make_IDENTIFIER  (yytext, loc);
-{int}       return make_NUMBER                  (yytext, loc);
+{int}       return make_NUMBER                  (yytext, loc, drv);
 "%"         return pp::parser::make_MOD         (loc);
 "?"         return pp::parser::make_THEN        (loc);
 ":"         return pp::parser::make_ELSE        (loc);
@@ -72,18 +72,27 @@ blank   [ \t\r]
                    << "\"";
                 drv.error =  ss.str();
 
-                throw pp::parser::syntax_error
-                    (loc, ss.str());
+                return pp::parser::make_PPerror(loc);
             }
 
 %%
 
 pp::parser::symbol_type
-make_NUMBER (const std::string &s, const pp::parser::location_type& loc) {
+make_NUMBER (const std::string &s, const pp::parser::location_type& loc, driver& drv) {
     errno = 0;
     long n = strtol(s.c_str(), NULL, 10);
     if (!(INT_MIN <= n && n <= INT_MAX && errno != ERANGE)) {
-        throw pp::parser::syntax_error(loc, "integer is out of range: " + s);
+        std::stringstream ss;
+        ss << "plurals-parser: error["
+           << loc
+           << "] integer is out of range ("
+           << INT_MIN
+           << ", "
+           << INT_MAX
+           << "): "
+           << s;
+        drv.error = ss.str();
+        return pp::parser::make_PPerror(loc);
     }
     return pp::parser::make_NUMBER((uint) n, loc);
 }
