@@ -307,7 +307,7 @@ run_tests(driver& drv, const bool verbose) {
         std::cout << "Failure" << std::endl;
         success = false;
     } else {
-        std::cout << "Result: unparsable" << std::endl;
+        std::cout << "Result: " << drv.error << std::endl;
         std::cout << "Success" << std::endl;
     }
 
